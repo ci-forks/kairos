@@ -1,0 +1,14 @@
+---SHIM-ALL---
+[    9.302150] BLKIDSHIM argv=[/dev/vda1 -s TYPE -o value]
+[    9.313443] BLKIDSHIM argv=[--help]
+[    9.317543] BLKIDSHIM argv=[/dev/vda1 -s TYPE -o value]
+[    9.324284] BLKIDSHIM argv=[--help]
+[   11.143933] BLKIDSHIM argv=[/dev/vda2 -s TYPE -o value]
+[   11.193208] BLKIDSHIM argv=[--help]
+---END---
+[   27.050426] I/O error, dev fd0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 2
+[   27.055450] floppy: error 10 while reading block 0
+NAME   LABEL          FSTYPE
+vda                   
+vda1 COS_OEM        ext4
+vda2 COS_PERSISTENT ext4

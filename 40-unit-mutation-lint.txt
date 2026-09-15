@@ -1,0 +1,34 @@
+=== repo-level checks, PR head 3b0005495 ===
+
+$ CGO_ENABLED=0 go test -count=1 ./immucore/...
+?   github.com/kairos-io/kairos/v4/immucore                [no test files]
+?   github.com/kairos-io/kairos/v4/immucore/internal/constants  [no test files]
+ok  github.com/kairos-io/kairos/v4/immucore/internal/utils  0.136s
+ok  github.com/kairos-io/kairos/v4/immucore/pkg/cmd         0.260s
+?   github.com/kairos-io/kairos/v4/immucore/pkg/dag         [no test files]
+ok  github.com/kairos-io/kairos/v4/immucore/pkg/op          0.010s
+?   github.com/kairos-io/kairos/v4/immucore/pkg/schema      [no test files]
+ok  github.com/kairos-io/kairos/v4/immucore/pkg/state       1.456s
+?   github.com/kairos-io/kairos/v4/immucore/tests/mocks     [no test files]
+
+$ docker run --rm -e CGO_ENABLED=0 -v "$PWD":/work -w /work \
+    golangci/golangci-lint:v2.13.2-alpine golangci-lint --timeout=10m run ./immucore/...
+0 issues.
+
+=== mutation checks, both reproduced ===
+
+1. guard back to `len(typeFsSplitted) < 1`:
+
+   FAIL! -- 139 Passed | 3 Failed | 0 Pending | 0 Skipped
+   [FAIL] DiskFSType with BusyBox blkid falls back to ext4 rather than panicking
+          [It] a device blkid found no tags for
+   [FAIL] ... [It] a trailing field carrying no separator
+   [FAIL] ... [It] a bare error line
+   each with: [FAILED] Expected
+                  runtime error: index out of range [1] with length 1
+
+2. `blkid --help` asked per call again (blkidIsBusyBox() -> inline
+   blkid("--help") + strings.Contains):
+
+   FAIL! -- 141 Passed | 1 Failed | 0 Pending | 0 Skipped
+   [FAIL] DiskFSType [It] asks blkid which blkid it is only once

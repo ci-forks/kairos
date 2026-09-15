@@ -1,0 +1,57 @@
+=== PR immucore + tagless BusyBox blkid shim: real boot ===
+
+-- shim invocations --
+BLKIDSHIM argv=[/dev/vda1 -s TYPE -o value]
+BLKIDSHIM argv=[--help]
+BLKIDSHIM argv=[/dev/vda1 -s TYPE -o value]
+BLKIDSHIM argv=[/dev/vda2 -s TYPE -o value]
+
+-- immucore.log: the guard now trips and falls back --
+2026-09-15T15:32:01Z DBG Getting disk type for device device=/dev/vda1
+2026-09-15T15:32:01Z DBG typeFs split what=/dev/vda1:
+2026-09-15T15:32:01Z DBG Getting disk type for device device=/dev/vda1
+2026-09-15T15:32:01Z DBG typeFs split what=/dev/vda1:
+2026-09-15T15:32:03Z DBG Getting disk type for device device=/dev/vda2
+2026-09-15T15:32:03Z DBG typeFs split what=/dev/vda2:
+
+-- and the fallback produces correct mounts --
+2026-09-15T15:32:02Z DBG mount ready options=["rw","suid","dev","exec","async"] type=ext4 what=/dev/vda1 where=/sysroot/oem
+2026-09-15T15:32:04Z DBG mount ready options=["rw"] type=ext4 what=/dev/vda2 where=/sysroot/usr/local
+
+-- partitions after boot --
+NAME   LABEL          FSTYPE
+vda                   
+vda1 COS_OEM        ext4
+vda2 COS_PERSISTENT ext4
+
+-- kairos-agent state --
+---KAIROS-STATE---
+uuid: 84c4d66fbbf449f4a3c8c9240cf27738-kairos
+persistent:
+    mounted: true
+    name: /dev/vda2
+    label: persistent
+    filesystemlabel: COS_PERSISTENT
+    mount_point: /usr/local
+    size_bytes: 4225761280
+    type: ext4
+    read_only: false
+    found: true
+    uuid: 1881e769-7714-4d45-a1ea-7229ca37d9f2
+recovery:
+    mounted: false
+    name: ""
+    label: ""
+    filesystemlabel: ""
+    mount_point: ""
+    size_bytes: 0
+    type: ""
+    read_only: false
+    found: false
+    uuid: ""
+oem:
+    mounted: true
+    name: /dev/vda1
+    label: oem
+    filesystemlabel: COS_OEM
+    mount_point: /oem

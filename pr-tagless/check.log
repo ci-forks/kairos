@@ -1,0 +1,52 @@
+cdroot root=live:CDLABEL=COS_LIVE rd.live.dir=/ rd.live.squashimg=rootfs.squashfs rd.live.overlay.overlayfs net.ifnames=1 console=tty1 console=ttyS0 kairos.ram kairos.ram.create_partitions nomodeset selinux=0 rd.immucore.debug ignore_loglevel
+---SHIM-ALL---
+[    9.545737] BLKIDSHIM argv=[/dev/vda1 -s TYPE -o value]
+[    9.551365] BLKIDSHIM argv=[--help]
+[    9.555526] BLKIDSHIM argv=[/dev/vda1 -s TYPE -o value]
+[   11.485243] BLKIDSHIM argv=[/dev/vda2 -s TYPE -o value]
+---COUNT-ALL---
+---COUNT-HELP---
+---MOUNTS---
+---PARTS---
+[   27.146200] I/O error, dev fd0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 2
+[   27.151371] floppy: error 10 while reading block 0
+NAME   LABEL          FSTYPE
+fd0                   
+loop0                 squashfs
+sr0    COS_LIVE       iso9660
+sr1    cidata         iso9660
+sr2                   
+vda                   
+vda1 COS_OEM        ext4
+vda2 COS_PERSISTENT ext4
+---KAIROS-STATE---
+uuid: 84c4d66fbbf449f4a3c8c9240cf27738-kairos
+persistent:
+    mounted: true
+    name: /dev/vda2
+    label: persistent
+    filesystemlabel: COS_PERSISTENT
+    mount_point: /usr/local
+    size_bytes: 4225761280
+    type: ext4
+    read_only: false
+    found: true
+    uuid: 1881e769-7714-4d45-a1ea-7229ca37d9f2
+recovery:
+    mounted: false
+    name: ""
+    label: ""
+    filesystemlabel: ""
+    mount_point: ""
+    size_bytes: 0
+    type: ""
+    read_only: false
+    found: false
+    uuid: ""
+oem:
+    mounted: true
+    name: /dev/vda1
+    label: oem
+    filesystemlabel: COS_OEM
+    mount_point: /oem
+    size_bytes: 67108864

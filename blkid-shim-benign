@@ -1,0 +1,26 @@
+#!/bin/sh
+# Benign BusyBox blkid emulation: real tags, BusyBox output shape. Lets the
+# pre-#4462 immucore survive so the blkid --help fork count is measurable.
+REAL=/usr/bin/blkid.real
+echo "BLKIDSHIM argv=[$*]" > /dev/kmsg 2>/dev/null
+case "$1" in
+  --help|-h)
+    echo "BusyBox v1.36.1 (2024-01-01 00:00:00 UTC) multi-call binary."
+    echo ""
+    echo "Usage: blkid [BLOCKDEV]..."
+    exit 0
+    ;;
+esac
+if [ "$#" -eq 5 ] && [ "$2" = "-s" ] && [ "$3" = "TYPE" ] && [ "$4" = "-o" ] && [ "$5" = "value" ]; then
+    # BusyBox prints the whole tag list and ignores -s/-o
+    t="$($REAL "$1" -s TYPE -o value 2>/dev/null)"
+    l="$($REAL "$1" -s LABEL -o value 2>/dev/null)"
+    u="$($REAL "$1" -s UUID -o value 2>/dev/null)"
+    if [ -n "$t" ]; then
+        echo "$1: LABEL=\"$l\" UUID=\"$u\" TYPE=\"$t\""
+    else
+        echo "$1:"
+    fi
+    exit 0
+fi
+exec "$REAL" "$@"

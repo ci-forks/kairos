@@ -1,0 +1,36 @@
+=== master (pre-fix) immucore + tagless BusyBox blkid shim: real boot ===
+
+-- shim invocations (from dmesg via /dev/kmsg) --
+BLKIDSHIM argv=[/dev/vda1 -s TYPE -o value]
+BLKIDSHIM argv=[--help]
+
+-- panic --
+[    8.626705] immucore[669]: panic: runtime error: index out of range [1] with length 1
+[    8.641280] immucore[669]: goroutine 67 [running]:
+[    8.645865] immucore[669]: github.com/kairos-io/kairos/v4/immucore/internal/utils.DiskFSType({0xa4e99449cb0, 0x9})
+[    8.657687] immucore[669]: 	github.com/kairos-io/kairos/v4/immucore/internal/utils/mounts.go:88 +0x332
+[    8.662334] immucore[669]: github.com/kairos-io/kairos/v4/immucore/pkg/state.(*State).MountOemDagStep.func1.1(...)
+[    8.667380] immucore[669]: 	github.com/kairos-io/kairos/v4/immucore/pkg/state/steps_shared.go:257
+[    8.671412] immucore[669]: github.com/kairos-io/kairos/v4/immucore/pkg/state.(*State).MountOemDagStep.func1({0xa4e997fb680?, 0x4c18d3?})
+[    8.677209] immucore[669]: 	github.com/kairos-io/kairos/v4/immucore/pkg/state/steps_shared.go:270 +0x30c
+[    8.679245] immucore[669]: github.com/kairos-io/kairos/v4/immucore/pkg/state.(*State).MountOemDagStep.TimedCallback.func2.1()
+[    8.680541] immucore[669]: 	github.com/kairos-io/kairos/v4/immucore/pkg/state/timing.go:56 +0x1f
+[    8.681845] immucore[669]: github.com/kairos-io/kairos/v4/immucore/pkg/state.RunTimed({0x10cb456, 0x9}, 0xa4e997fb708)
+[    8.684982] immucore[669]: 	github.com/kairos-io/kairos/v4/immucore/pkg/state/timing.go:46 +0x3f
+[    8.691367] immucore[669]: github.com/kairos-io/kairos/v4/immucore/pkg/state.(*State).MountOemDagStep.TimedCallback.func2({0x1142c70?, 0x1a54700?})
+[    8.691983] immucore[669]: 	github.com/kairos-io/kairos/v4/immucore/pkg/state/timing.go:56 +0x4f
+
+-- outcome --
+[0;1;39mEmergency Mode
+Entering emergency mode. Exit the shell to continue.
+
+-- master mounts.go lines 82-90 --
+    82			typeFs := splitted[len(splitted)-1]
+    83			typeFsSplitted := strings.Split(typeFs, "=")
+    84			if len(typeFsSplitted) < 1 {
+    85				KLog.Logger.Debug().Str("what", typeFs).Msg("typeFs split")
+    86				return "ext4"
+    87			}
+    88			finalFS := typeFsSplitted[1]
+    89			out = strings.TrimSpace(strings.Trim(finalFS, "\""))
+    90		}

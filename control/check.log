@@ -1,0 +1,108 @@
+cdroot root=live:CDLABEL=COS_LIVE rd.live.dir=/ rd.live.squashimg=rootfs.squashfs rd.live.overlay.overlayfs net.ifnames=1 console=ttyS0 console=tty1 kairos.ram kairos.ram.create_partitions nomodeset selinux=0 rd.immucore.debug ignore_loglevel
+---SHIM---
+---COUNT-ALL---
+---COUNT-HELP---
+---MOUNTS---
+/                               LiveOS_rootfs                        overlay
+/dev                          devtmpfs                             devtmpfs
+/dev/mqueue                 mqueue                               mqueue
+/dev/hugepages              hugetlbfs                            hugetlbfs
+/dev/shm                    tmpfs                                tmpfs
+/dev/pts                    devpts                               devpts
+/sys                          sysfs                                sysfs
+/sys/kernel/debug           debugfs                              debugfs
+/sys/kernel/tracing         tracefs                              tracefs
+/sys/fs/fuse/connections    fusectl                              fusectl
+/sys/kernel/security        securityfs                           securityfs
+/sys/fs/cgroup              cgroup2                              cgroup2
+/sys/fs/bpf                 bpf                                  bpf
+/sys/kernel/config          configfs                             configfs
+/proc                         proc                                 proc
+/proc/sys/fs/binfmt_misc    systemd-1                            autofs
+/proc/sys/fs/binfmt_misc  binfmt_misc                          binfmt_misc
+/run                          tmpfs                                tmpfs
+/run/credentials/systemd-journald.service
+                             none                                 tmpfs
+/run/credentials/systemd-networkd.service
+                             none                                 tmpfs
+/run/initramfs/live         /dev/sr0                             iso9660
+/run/rootfsbase             /dev/loop0                           squashfs
+/run/overlay                tmpfs                                tmpfs
+/run/credentials/getty@tty1.service
+                             none                                 tmpfs
+/run/credentials/serial-getty@ttyS0.service
+                             none                                 tmpfs
+/run/user/1000              tmpfs                                tmpfs
+/run/credentials/systemd-resolved.service
+                               none                                 tmpfs
+/oem                          /dev/vda1                            ext4
+/usr/local                    /dev/vda2                            ext4
+/var                          overlay                              overlay
+/var/cores                  /dev/vda2[/.state/var-cores.bind]    ext4
+/var/log                    /dev/vda2[/.state/var-log.bind]      ext4
+/var/lib/ca-certificates    /dev/vda2[/.state/var-lib-ca-certificates.bind]
+                                                                  ext4
+/var/lib/calico             /dev/vda2[/.state/var-lib-calico.bind]
+                                                                  ext4
+/var/lib/cni                /dev/vda2[/.state/var-lib-cni.bind]  ext4
+/var/lib/confexts           /dev/vda2[/.state/var-lib-confexts.bind]
+                                                                  ext4
+/var/lib/containerd         /dev/vda2[/.state/var-lib-containerd.bind]
+                                                                  ext4
+/var/lib/dbus               /dev/vda2[/.state/var-lib-dbus.bind] ext4
+/var/lib/etcd               /dev/vda2[/.state/var-lib-etcd.bind] ext4
+/var/lib/extensions         /dev/vda2[/.state/var-lib-extensions.bind]
+                                                                  ext4
+/var/lib/k0s                /dev/vda2[/.state/var-lib-k0s.bind]  ext4
+/var/lib/kairos             /dev/vda2[/.state/var-lib-kairos.bind]
+                                                                  ext4
+/var/lib/kubelet            /dev/vda2[/.state/var-lib-kubelet.bind]
+                                                                  ext4
+/var/lib/longhorn           /dev/vda2[/.state/var-lib-longhorn.bind]
+                                                                  ext4
+/var/lib/osd                /dev/vda2[/.state/var-lib-osd.bind]  ext4
+/var/lib/rancher            /dev/vda2[/.state/var-lib-rancher.bind]
+                                                                  ext4
+/var/lib/rook               /dev/vda2[/.state/var-lib-rook.bind] ext4
+/var/lib/tailscale          /dev/vda2[/.state/var-lib-tailscale.bind]
+                                                                  ext4
+/var/lib/wicked             /dev/vda2[/.state/var-lib-wicked.bind]
+                                                                    ext4
+/etc                          overlay                              overlay
+/etc/cni                    /dev/vda2[/.state/etc-cni.bind]      ext4
+/etc/init.d                 /dev/vda2[/.state/etc-init.d.bind]   ext4
+/etc/iscsi                  /dev/vda2[/.state/etc-iscsi.bind]    ext4
+/etc/k0s                    /dev/vda2[/.state/etc-k0s.bind]      ext4
+/etc/kubernetes             /dev/vda2[/.state/etc-kubernetes.bind]
+                                                                  ext4
+/etc/modprobe.d             /dev/vda2[/.state/etc-modprobe.d.bind]
+                                                                  ext4
+/etc/pwx                    /dev/vda2[/.state/etc-pwx.bind]      ext4
+/etc/rancher                /dev/vda2[/.state/etc-rancher.bind]  ext4
+/etc/runlevels              /dev/vda2[/.state/etc-runlevels.bind]
+                                                                  ext4
+/etc/ssh                    /dev/vda2[/.state/etc-ssh.bind]      ext4
+/etc/sysconfig              /dev/vda2[/.state/etc-sysconfig.bind]
+                                                                  ext4
+/etc/systemd                /dev/vda2[/.state/etc-systemd.bind]  ext4
+/etc/zfs                    /dev/vda2[/.state/etc-zfs.bind]      ext4
+/etc/ssl/certs              /dev/vda2[/.state/etc-ssl-certs.bind]
+                                                                    ext4
+/srv                          overlay                              overlay
+/home                         /dev/vda2[/.state/home.bind]         ext4
+/opt                          /dev/vda2[/.state/opt.bind]          ext4
+/root                         /dev/vda2[/.state/root.bind]         ext4
+/usr/libexec                  /dev/vda2[/.state/usr-libexec.bind]  ext4
+/tmp                          tmpfs                                tmpfs
+---PARTS---
+[   24.700368] I/O error, dev fd0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 2
+[   24.705484] floppy: error 10 while reading block 0
+NAME   LABEL          FSTYPE
+fd0                   
+loop0                 squashfs
+sr0    COS_LIVE       iso9660
+sr1    cidata         iso9660
+sr2                   
+vda                   
+vda1 COS_OEM        ext4
+vda2 COS_PERSISTENT ext4

@@ -1,0 +1,1329 @@
+2026-09-15T15:34:24Z INF Immucore go=go1.26.8 version=dev
+2026-09-15T15:34:24Z DBG cmdline content="cdroot root=live:CDLABEL=COS_LIVE rd.live.dir=/ rd.live.squashimg=rootfs.squashfs rd.live.overlay.overlayfs net.ifnames=1 console=tty1 console=ttyS0 kairos.ram kairos.ram.create_partitions nomodeset selinux=0 rd.immucore.debug ignore_loglevel\n"
+2026-09-15T15:34:24Z DBG detecting boot state
+2026-09-15T15:34:24Z DBG Detected in-RAM boot; classifying as Active
+2026-09-15T15:34:24Z INF Booting in-RAM (kairos.ram) with OEM+persistent from disk.
+2026-09-15T15:34:24Z INF Checking OEM encryption status oem_encrypted=false
+2026-09-15T15:34:24Z INF OEM is NOT encrypted: OEM mount will run before kcrypt unlock
+2026-09-15T15:34:24Z INF 1.
+ <init> (background: false) (weak: false) (run: false)
+ <create-sentinel> (background: false) (weak: false) (run: false)
+ <wait-for-sysroot> (background: false) (weak: false) (run: false)
+ <mount-tmpfs> (background: false) (weak: false) (run: false)
+ <ensure-partitions> (background: false) (weak: false) (run: false)
+ <mount-oem> (background: false) (weak: false) (run: false)
+ <upgrade-kcrypt> (background: false) (weak: false) (run: false)
+ <unlock-all> (background: false) (weak: false) (run: false)
+ <rootfs-hook> (background: false) (weak: false) (run: false)
+ <load-config> (background: false) (weak: false) (run: false)
+ <custom-mount> (background: false) (weak: false) (run: false)
+ <mount-base-overlay> (background: false) (weak: false) (run: false)
+ <overlay-mount> (background: false) (weak: false) (run: false)
+ <mount-bind> (background: false) (weak: false) (run: false)
+ <write-fstab> (background: false) (weak: false) (run: false)
+ <enable-sysext-confext> (background: false) (weak: false) (run: false)
+ <initramfs-hook> (background: false) (weak: false) (run: false)
+2026-09-15T15:34:24Z DBG Waiting for sysroot timeout=2m0s
+2026-09-15T15:34:24Z DBG Will now create /run/cos if not exists
+2026-09-15T15:34:24Z DBG Will now create the runtime object
+2026-09-15T15:34:24Z DBG detecting boot state
+2026-09-15T15:34:24Z DBG Detected in-RAM boot; classifying as Active
+2026-09-15T15:34:24Z DBG Bootstate: active_boot
+2026-09-15T15:34:24Z DBG The BootState was BootState=active_boot
+2026-09-15T15:34:24Z INF Setting sentinel file to=active_mode
+2026-09-15T15:34:24Z INF Setting in-RAM sentinel file to=in_ram_mode
+2026-09-15T15:34:25Z DBG Cleaning for sysroot new=/tmp old=/tmp
+2026-09-15T15:34:25Z DBG mount ready options=["rw"] type=tmpfs what=tmpfs where=/tmp
+2026-09-15T15:34:25Z INF mount done options=["rw"] type=tmpfs what=tmpfs where=/tmp
+2026-09-15T15:34:26Z INF creating missing kairos partitions init_disk=true oem_present=false oem_size_mib=64 persistent_present=false persistent_size_mib=0 target=/dev/vda
+2026-09-15T15:34:26Z INF Running stage: ensure-partitions
+2026-09-15T15:34:26Z DBG Generating op for stage '<STDIN>.Create missing Kairos partitions'
+2026-09-15T15:34:26Z DBG Reading '<STDIN>'
+2026-09-15T15:34:26Z DBG Executing stage '<STDIN>.Create missing Kairos partitions'
+2026-09-15T15:34:26Z INF Processing stage step '<STDIN>.Create missing Kairos partitions'. ( commands: 0, files: 0, ... )
+2026-09-15T15:34:26Z DBG Stage: schema.Stage{
+  Name: "Create missing Kairos partitions",
+  Layout: schema.Layout{
+    Device: &schema.Device{
+      InitDisk: true,
+      Path: "/dev/vda",
+    },
+    Parts: []schema.Partition{
+      schema.Partition{
+        FSLabel: "COS_OEM",
+        Size: 64,
+        PLabel: "oem",
+        FileSystem: "ext4",
+      },
+      schema.Partition{
+        FSLabel: "COS_PERSISTENT",
+        PLabel: "persistent",
+        FileSystem: "ext4",
+      },
+    },
+  },
+2026-09-15T15:34:26Z INF Running layout plugin
+2026-09-15T15:34:26Z DBG Initializing disk with path /dev/vda
+2026-09-15T15:34:26Z DBG Initialized disk with path /dev/vda
+2026-09-15T15:34:26Z DBG Checking layout device information
+2026-09-15T15:34:26Z DBG Using path /dev/vda for layout expansion
+2026-09-15T15:34:26Z DBG Checking for free space on device /dev/vda
+2026-09-15T15:34:26Z DBG Checking if more than a partition is marked as bootable on device /dev/vda
+2026-09-15T15:34:26Z DBG Verifying and repairing headers on device /dev/vda
+2026-09-15T15:34:26Z DBG Going over the partition layout to create partitions on device /dev/vda
+2026-09-15T15:34:26Z DBG Checking if partition with PLabel: oem exists on device /dev/vda
+2026-09-15T15:34:26Z DBG Added partition (fslabel: COS_OEM) of size 64 MiB on device /dev/vda
+2026-09-15T15:34:26Z DBG Checking if partition with PLabel: persistent exists on device /dev/vda
+2026-09-15T15:34:26Z DBG Added partition (fslabel: COS_PERSISTENT) of size 4030 MiB on device /dev/vda
+2026-09-15T15:34:26Z DBG Formatting partition COS_OEM on device /dev/vda
+2026-09-15T15:34:26Z DBG Formatting partition COS_PERSISTENT on device /dev/vda
+2026-09-15T15:34:26Z DBG Checking for layout expansion on device /dev/vda
+2026-09-15T15:34:26Z DBG All done with layout plugin for device /dev/vda
+2026-09-15T15:34:26Z INF Done executing stage 'ensure-partitions'
+2026-09-15T15:34:27Z INF kairos partitions ready
+2026-09-15T15:34:27Z DBG detecting boot state
+2026-09-15T15:34:27Z DBG Detected in-RAM boot; classifying as Active
+2026-09-15T15:34:27Z DBG Resolved label to concrete device path label=COS_OEM resolved=/dev/vda1
+2026-09-15T15:34:27Z DBG Getting disk type for device device=/dev/vda1
+2026-09-15T15:34:27Z DBG Partition FS type type=ext4 what=/dev/vda1
+2026-09-15T15:34:27Z DBG Getting disk type for device device=/dev/vda1
+2026-09-15T15:34:27Z DBG Partition FS type type=ext4 what=/dev/vda1
+2026-09-15T15:34:28Z DBG Cleaning for sysroot new=/oem old=/sysroot/oem
+2026-09-15T15:34:28Z DBG fsck command cmd="fsck /dev/vda1 -a"
+2026-09-15T15:34:28Z DBG mount ready options=["rw","suid","dev","exec","async"] type=ext4 what=/dev/vda1 where=/sysroot/oem
+2026-09-15T15:34:28Z INF mount done options=["rw","suid","dev","exec","async"] type=ext4 what=/dev/vda1 where=/sysroot/oem
+2026-09-15T15:34:28Z INF Running rootfs stage
+2026-09-15T15:34:28Z INF Running stage: rootfs.before
+2026-09-15T15:34:28Z DBG Getting encryptor for unlocking
+2026-09-15T15:34:28Z DBG Scanning for encrypted partitions
+2026-09-15T15:34:28Z DBG No encrypted partitions found
+2026-09-15T15:34:28Z DBG Generating op for stage 'Datasource handling.Move old datasource to new location'
+2026-09-15T15:34:28Z DBG Generating op for stage 'Datasource handling.Remove old userdata'
+2026-09-15T15:34:28Z DBG Generating op for stage 'Datasource handling.Pull data from provider'
+2026-09-15T15:34:28Z DBG Generating op for stage 'Datasource handling.Sentinel file for userdata'
+2026-09-15T15:34:28Z DBG Generating op for stage 'Default network configuration.Enable systemd-network config files for DHCP'
+2026-09-15T15:34:28Z DBG Reading '/system/oem/05_network.yaml'
+2026-09-15T15:34:28Z DBG Executing stage 'Default network configuration.Enable systemd-network config files for DHCP'
+2026-09-15T15:34:28Z DBG Reading '/system/oem/00_datasource.yaml'
+2026-09-15T15:34:28Z DBG Executing stage 'Datasource handling.Move old datasource to new location'
+2026-09-15T15:34:28Z DBG running stage (OnlyIfOs regex (Ubuntu.*|Debian.*|Fedora.*|CentOS.*|Rocky.*|AlmaLinux.*|Oracle.*Linux.*|SUSE.*|[Oo]penSUSE.*|Hadron.*|Red.*Hat.*) matches os name 'Hadron Linux dracut-111 (Initramfs)
+2026-09-15T15:34:28Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:28Z INF Processing stage step 'Default network configuration.Enable systemd-network config files for DHCP'. ( commands: 0, files: 2, ... )
+2026-09-15T15:34:28Z DBG Stage: schema.Stage{
+  Files: []schema.File{
+    schema.File{
+      Path: "/etc/systemd/network/20-dhcp.network",
+      Permissions: 420,
+      Content: "[Match]\nName=en*\n[Network]\nDHCP=yes\n[DHCP]\nClientIdentifier=mac\n",
+    },
+    schema.File{
+      Path: "/etc/systemd/network/20-dhcp-legacy.network",
+      Permissions: 420,
+      Content: "[Match]\nName=eth*\n[Network]\nDHCP=yes\n[DHCP]\nClientIdentifier=mac\n",
+    },
+  },
+  Directories: []schema.Directory{
+    schema.Directory{
+      Path: "/etc/systemd/network",
+      Permissions: 509,
+    },
+  },
+  Name: "Enable systemd-network config files for DHCP",
+  OnlyIfOs: "Ubuntu.*|Debian.*|Fedora.*|CentOS.*|Rocky.*|AlmaLinux.*|Oracle.*Linux.*|SUSE.*|[Oo]penSUSE.*|Hadron.*|Red.*Hat.*",
+  OnlyIfServiceManager: "systemd",
+2026-09-15T15:34:28Z DBG Creating directory /etc/systemd/network
+2026-09-15T15:34:28Z DBG Creating file /etc/systemd/network/20-dhcp.network
+2026-09-15T15:34:28Z DBG Creating file /etc/systemd/network/20-dhcp-legacy.network
+2026-09-15T15:34:28Z INF Running layout plugin
+2026-09-15T15:34:28Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:28Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -d /oem/userdata ] && [ ! -d /oem/95_userdata ]: exit status 1)' stage name: Datasource handling.Move old datasource to new location
+2026-09-15T15:34:28Z DBG Reading '/system/oem/00_datasource.yaml'
+2026-09-15T15:34:28Z DBG Executing stage 'Datasource handling.Remove old userdata'
+2026-09-15T15:34:28Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -d /oem/userdata ] && [ -d /oem/95_userdata ]: exit status 1)' stage name: Datasource handling.Remove old userdata
+2026-09-15T15:34:28Z DBG Reading '/system/oem/00_datasource.yaml'
+2026-09-15T15:34:28Z DBG Executing stage 'Datasource handling.Pull data from provider'
+2026-09-15T15:34:28Z DBG If statement result 
+2026-09-15T15:34:28Z INF Processing stage step 'Datasource handling.Pull data from provider'. ( commands: 0, files: 0, ... )
+2026-09-15T15:34:28Z DBG Stage: schema.Stage{
+  If: "[ ! -e /oem/95_userdata ] && ([ ! -f /run/cos/uki_boot_mode ] || grep -q \"kairos.pull_datasources\" /proc/cmdline )",
+  Name: "Pull data from provider",
+  DataSources: schema.DataSource{
+    Providers: []string{
+      "cdrom",
+      "gcp",
+      "openstack",
+      "aws",
+      "azure",
+      "hetzner",
+      "packet",
+      "vultr",
+      "digitalocean",
+      "metaldata",
+      "vmware",
+      "config-drive",
+      "maas",
+    },
+    Path: "/oem/95_userdata",
+  },
+2026-09-15T15:34:28Z DBG cdrom devices to be checked: [/dev/sr0 /dev/sr1 /dev/sr2]
+2026-09-15T15:34:28Z DBG adding device: /dev/sr1
+2026-09-15T15:34:28Z DBG CIDATA devices to be checked: [/dev/sr1]
+2026-09-15T15:34:28Z DBG unique devices to be checked: [/dev/sr1 /dev/sr0 /dev/sr2]
+2026-09-15T15:34:28Z DBG cdrom devices to be checked: [/dev/sr0 /dev/sr1 /dev/sr2]
+2026-09-15T15:34:28Z DBG CONFIG-2 devices to be checked: []
+2026-09-15T15:34:28Z DBG unique devices to be checked: [/dev/sr0 /dev/sr1 /dev/sr2]
+2026-09-15T15:34:29Z DBG Creating directory /run/config
+2026-09-15T15:34:29Z DBG Full provider list: [GCP Openstack AWS Azure Hetzner Packet Vultr DigitalOcean Metaldata VMWARE MAAS]
+2026-09-15T15:34:29Z DBG Starting provider CDROM(/dev/sr1)
+2026-09-15T15:34:29Z DBG Found userdata from CDROM(/dev/sr1)
+2026-09-15T15:34:29Z DBG Creating file /oem/95_userdata/userdata
+2026-09-15T15:34:29Z DBG Creating parent directories
+2026-09-15T15:34:29Z DBG Adding execution bit to parent directory
+2026-09-15T15:34:29Z DBG Creating directory /oem/95_userdata
+2026-09-15T15:34:29Z DBG Creating file /oem/95_userdata/userdata.yaml
+2026-09-15T15:34:29Z INF Running layout plugin
+2026-09-15T15:34:29Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:29Z DBG Reading '/system/oem/00_datasource.yaml'
+2026-09-15T15:34:29Z DBG Executing stage 'Datasource handling.Sentinel file for userdata'
+2026-09-15T15:34:29Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ ! -e /oem/95_userdata ]: exit status 1)' stage name: Datasource handling.Sentinel file for userdata
+2026-09-15T15:34:29Z INF Done executing stage 'rootfs.before'
+2026-09-15T15:34:29Z INF Running stage: rootfs
+2026-09-15T15:34:29Z DBG Generating op for stage 'Rootfs Layout Settings.Layout configuration for active/passive mode'
+2026-09-15T15:34:29Z DBG Generating op for stage 'Rootfs Layout Settings.Layout configuration for recovery/autoreset mode'
+2026-09-15T15:34:29Z DBG Generating op for stage 'Rootfs Layout Settings.Layout configuration for UKI installer'
+2026-09-15T15:34:29Z DBG Generating op for stage 'Rootfs Layout Settings.Mask the commit service to avoid systemd messing with machine-id'
+2026-09-15T15:34:29Z DBG Generating op for stage 'Extra binds for specific distros.Extra layout configuration for active/passive mode (Ubuntu/Debian)'
+2026-09-15T15:34:29Z DBG Generating op for stage 'Extra binds for specific distros.Extra layout configuration for active/passive mode'
+2026-09-15T15:34:29Z DBG Reading '/system/oem/00_rootfs.yaml'
+2026-09-15T15:34:29Z DBG Executing stage 'Rootfs Layout Settings.Layout configuration for active/passive mode'
+2026-09-15T15:34:29Z DBG If statement result 
+2026-09-15T15:34:29Z INF Processing stage step 'Rootfs Layout Settings.Layout configuration for active/passive mode'. ( commands: 0, files: 0, ... )
+2026-09-15T15:34:29Z DBG Stage: schema.Stage{
+  If: "[ ! -e \"/run/cos/recovery_mode\" ] && [ ! -e \"/run/cos/autoreset_mode\" ] && [ ! -e \"/run/cos/uki_install_mode\" ]",
+  Name: "Layout configuration for active/passive mode",
+  Environment: map[string]string{
+    "OVERLAY": "tmpfs:25%",
+    "PERSISTENT_STATE_PATHS": "/etc/cni /etc/init.d /etc/iscsi /etc/k0s /etc/kubernetes /etc/modprobe.d /etc/pwx /etc/rancher /etc/runlevels /etc/ssh /etc/ssl/certs /etc/sysconfig /etc/systemd /etc/zfs /home /opt /root /usr/libexec /var/cores /var/lib/ca-certificates /var/lib/cni /var/lib/containerd /var/lib/calico /var/lib/dbus /var/lib/etcd /var/lib/extensions /var/lib/confexts /var/lib/k0s /var/lib/kubelet /var/lib/longhorn /var/lib/osd /var/lib/rancher /var/lib/rook /var/lib/tailscale /var/lib/wicked /var/lib/kairos /var/log",
+    "RW_PATHS": "/var /etc /srv",
+    "VOLUMES": "LABEL=COS_PERSISTENT:/usr/local",
+  },
+  EnvironmentFile: "/run/cos/cos-layout.env",
+2026-09-15T15:34:29Z INF Running layout plugin
+2026-09-15T15:34:29Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:29Z DBG Reading '/system/oem/00_rootfs.yaml'
+2026-09-15T15:34:29Z DBG Executing stage 'Rootfs Layout Settings.Layout configuration for recovery/autoreset mode'
+2026-09-15T15:34:29Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -e "/run/cos/recovery_mode" ] || [ -e "/run/cos/autoreset_mode" ]: exit status 1)' stage name: Rootfs Layout Settings.Layout configuration for recovery/autoreset mode
+2026-09-15T15:34:29Z DBG Reading '/system/oem/00_rootfs.yaml'
+2026-09-15T15:34:29Z DBG Executing stage 'Rootfs Layout Settings.Layout configuration for UKI installer'
+2026-09-15T15:34:29Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -e "/run/cos/uki_install_mode" ]: exit status 1)' stage name: Rootfs Layout Settings.Layout configuration for UKI installer
+2026-09-15T15:34:29Z DBG Reading '/system/oem/00_rootfs.yaml'
+2026-09-15T15:34:29Z DBG Executing stage 'Rootfs Layout Settings.Mask the commit service to avoid systemd messing with machine-id'
+2026-09-15T15:34:29Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:29Z INF Processing stage step 'Rootfs Layout Settings.Mask the commit service to avoid systemd messing with machine-id'. ( commands: 0, files: 0, ... )
+2026-09-15T15:34:29Z DBG Stage: schema.Stage{
+  Name: "Mask the commit service to avoid systemd messing with machine-id",
+  Systemctl: schema.Systemctl{
+    Mask: []string{
+      "systemd-machine-id-commit.service",
+    },
+  },
+  OnlyIfServiceManager: "systemd",
+2026-09-15T15:34:29Z INF Running layout plugin
+2026-09-15T15:34:29Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:29Z DBG Reading '/system/oem/01_extra_binds.yaml'
+2026-09-15T15:34:29Z DBG Executing stage 'Extra binds for specific distros.Extra layout configuration for active/passive mode (Ubuntu/Debian)'
+2026-09-15T15:34:29Z DBG If statement result 
+2026-09-15T15:34:29Z WRN (conditional) Skip 'OnlyIfOs regex (Ubuntu.*|Debian.*) doesn't match os name Hadron Linux dracut-111 (Initramfs)' stage name: Extra binds for specific distros.Extra layout configuration for active/passive mode (Ubuntu/Debian)
+2026-09-15T15:34:29Z DBG Reading '/system/oem/01_extra_binds.yaml'
+2026-09-15T15:34:29Z DBG Executing stage 'Extra binds for specific distros.Extra layout configuration for active/passive mode'
+2026-09-15T15:34:29Z DBG If statement result 
+2026-09-15T15:34:29Z WRN (conditional) Skip 'OnlyIfOs regex (Red.*Hat.*|CentOS.*|Fedora.*|Rocky.*|AlmaLinux.*|Oracle.*Linux.*|SLES.*|[Oo]penSUSE.*|SUSE.*) doesn't match os name Hadron Linux dracut-111 (Initramfs)' stage name: Extra binds for specific distros.Extra layout configuration for active/passive mode
+2026-09-15T15:34:29Z INF Done executing stage 'rootfs'
+2026-09-15T15:34:29Z INF Running stage: rootfs.after
+2026-09-15T15:34:29Z DBG Generating op for stage 'Rootfs Layout Settings.add custom bind and ephemeral mounts to /run/cos/cos-layout.env'
+2026-09-15T15:34:29Z DBG Generating op for stage 'Rootfs Layout Settings.Grow persistent'
+2026-09-15T15:34:29Z DBG Reading '/system/oem/00_rootfs.yaml'
+2026-09-15T15:34:29Z DBG Executing stage 'Rootfs Layout Settings.add custom bind and ephemeral mounts to /run/cos/cos-layout.env'
+2026-09-15T15:34:29Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -r /run/cos/custom-layout.env ] && [ ! -f "/run/cos/recovery_mode" ] && [ ! -f /run/cos/live_mode ]: exit status 1)' stage name: Rootfs Layout Settings.add custom bind and ephemeral mounts to /run/cos/cos-layout.env
+2026-09-15T15:34:29Z DBG Reading '/system/oem/00_rootfs.yaml'
+2026-09-15T15:34:29Z DBG Executing stage 'Rootfs Layout Settings.Grow persistent'
+2026-09-15T15:34:29Z DBG If statement result 
+2026-09-15T15:34:29Z INF Processing stage step 'Rootfs Layout Settings.Grow persistent'. ( commands: 0, files: 0, ... )
+2026-09-15T15:34:29Z DBG Stage: schema.Stage{
+  If: "[ ! -f /run/cos/recovery_mode ] && [ ! -f /run/cos/live_mode ]",
+  Name: "Grow persistent",
+  Layout: schema.Layout{
+    Device: &schema.Device{
+      Label: "COS_PERSISTENT",
+    },
+    Expand: &schema.Expand{},
+  },
+2026-09-15T15:34:29Z INF Running layout plugin
+2026-09-15T15:34:29Z DBG Checking layout device information
+2026-09-15T15:34:29Z DBG Using label COS_PERSISTENT for layout expansion
+2026-09-15T15:34:29Z DBG Checking for free space on device /dev/vda
+2026-09-15T15:34:29Z DBG Checking if more than a partition is marked as bootable on device /dev/vda
+2026-09-15T15:34:29Z DBG Verifying and repairing headers on device /dev/vda
+2026-09-15T15:34:29Z DBG Going over the partition layout to create partitions on device /dev/vda
+2026-09-15T15:34:29Z DBG No partitions to add, skipping
+2026-09-15T15:34:29Z DBG Checking for layout expansion on device /dev/vda
+2026-09-15T15:34:29Z DBG Extending last partition to max space
+2026-09-15T15:34:29Z ERR requested size is less than or equal to current partition size (requested 4225761280 sectors, current 4225761280 sectors)
+2026-09-15T15:34:29Z ERR Error on file /system/oem/00_rootfs.yaml on stage Grow persistent: requested size is less than or equal to current partition size (requested 4225761280 sectors, current 4225761280 sectors)
+2026-09-15T15:34:29Z INF Done executing stage 'rootfs.after'
+2026-09-15T15:34:29Z INF Running stage: rootfs.before
+2026-09-15T15:34:29Z INF Done executing stage 'rootfs.before'
+2026-09-15T15:34:29Z INF Running stage: rootfs
+2026-09-15T15:34:29Z INF Done executing stage 'rootfs'
+2026-09-15T15:34:29Z INF Running stage: rootfs.after
+2026-09-15T15:34:29Z INF Done executing stage 'rootfs.after'
+2026-09-15T15:34:29Z DBG No extra env from /run/cos/extra-layout.env
+2026-09-15T15:34:29Z DBG Mounting custom mounts mounts={"/dev/disk/by-label/COS_PERSISTENT":"/usr/local"}
+2026-09-15T15:34:29Z DBG Custom mount start what=/dev/disk/by-label/COS_PERSISTENT where=/usr/local
+2026-09-15T15:34:29Z DBG Cleaning for sysroot new=/run/overlay old=/run/overlay
+2026-09-15T15:34:29Z DBG mount ready options=["size=25%"] type=tmpfs what=tmpfs where=/run/overlay
+2026-09-15T15:34:29Z DBG Resolved label to concrete device path label=COS_PERSISTENT resolved=/dev/vda2
+2026-09-15T15:34:29Z DBG Getting disk type for device device=/dev/vda2
+2026-09-15T15:34:29Z DBG Partition FS type type=ext4 what=/dev/vda2
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/usr/local old=/sysroot/usr/local
+2026-09-15T15:34:30Z DBG fsck command cmd="fsck /dev/vda2 -a"
+2026-09-15T15:34:30Z DBG mount ready options=["rw"] type=ext4 what=/dev/vda2 where=/sysroot/usr/local
+2026-09-15T15:34:30Z INF mount done options=["rw"] type=ext4 what=/dev/vda2 where=/sysroot/usr/local
+2026-09-15T15:34:30Z DBG Custom mount done what=/dev/disk/by-label/COS_PERSISTENT where=/usr/local
+2026-09-15T15:34:30Z WRN
+2026-09-15T15:34:30Z DBG Mounting overlays dirs=["/var","/etc","/srv"]
+2026-09-15T15:34:30Z DBG Overlay mount start what=/var
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/var old=/sysroot/var
+2026-09-15T15:34:30Z DBG mount ready options=["lowerdir=/sysroot/var","upperdir=/run/overlay/var/.overlay/upper","workdir=/run/overlay/var/.overlay/work"] type=overlay what=overlay where=/sysroot/var
+2026-09-15T15:34:30Z DBG Overlay mount done what=/var
+2026-09-15T15:34:30Z DBG Overlay mount start what=/etc
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/etc old=/sysroot/etc
+2026-09-15T15:34:30Z DBG mount ready options=["lowerdir=/sysroot/etc","upperdir=/run/overlay/etc/.overlay/upper","workdir=/run/overlay/etc/.overlay/work"] type=overlay what=overlay where=/sysroot/etc
+2026-09-15T15:34:30Z DBG Overlay mount done what=/etc
+2026-09-15T15:34:30Z DBG Overlay mount start what=/srv
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/srv old=/sysroot/srv
+2026-09-15T15:34:30Z DBG mount ready options=["lowerdir=/sysroot/srv","upperdir=/run/overlay/srv/.overlay/upper","workdir=/run/overlay/srv/.overlay/work"] type=overlay what=overlay where=/sysroot/srv
+2026-09-15T15:34:30Z DBG Overlay mount done what=/srv
+2026-09-15T15:34:30Z DBG Mounting binds mounts=["/etc/cni","/etc/init.d","/etc/iscsi","/etc/k0s","/etc/kubernetes","/etc/modprobe.d","/etc/pwx","/etc/rancher","/etc/runlevels","/etc/ssh","/etc/ssl/certs","/etc/sysconfig","/etc/systemd","/etc/zfs","/home","/opt","/root","/usr/libexec","/var/cores","/var/lib/ca-certificates","/var/lib/cni","/var/lib/containerd","/var/lib/calico","/var/lib/dbus","/var/lib/etcd","/var/lib/extensions","/var/lib/confexts","/var/lib/k0s","/var/lib/kubelet","/var/lib/longhorn","/var/lib/osd","/var/lib/rancher","/var/lib/rook","/var/lib/tailscale","/var/lib/wicked","/var/lib/kairos","/var/log"]
+2026-09-15T15:34:30Z DBG Bind mount start what=/home
+2026-09-15T15:34:30Z DBG Bind mount what=/sysroot/usr/local/.state/home.bind where=/sysroot/home
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/home old=/home
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/usr/local/.state/home.bind old=/sysroot/usr/local/.state/home.bind
+2026-09-15T15:34:30Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/home.bind where=/sysroot/home
+2026-09-15T15:34:30Z DBG Bind mount end what=/home
+2026-09-15T15:34:30Z DBG Bind mount start what=/opt
+2026-09-15T15:34:30Z DBG Bind mount what=/sysroot/usr/local/.state/opt.bind where=/sysroot/opt
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/opt old=/opt
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/usr/local/.state/opt.bind old=/sysroot/usr/local/.state/opt.bind
+2026-09-15T15:34:30Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/opt.bind where=/sysroot/opt
+2026-09-15T15:34:30Z DBG Bind mount end what=/opt
+2026-09-15T15:34:30Z DBG Bind mount start what=/root
+2026-09-15T15:34:30Z DBG Bind mount what=/sysroot/usr/local/.state/root.bind where=/sysroot/root
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/root old=/root
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/usr/local/.state/root.bind old=/sysroot/usr/local/.state/root.bind
+2026-09-15T15:34:30Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/root.bind where=/sysroot/root
+2026-09-15T15:34:30Z DBG Bind mount end what=/root
+2026-09-15T15:34:30Z DBG Bind mount start what=/etc/cni
+2026-09-15T15:34:30Z DBG Bind mount what=/sysroot/usr/local/.state/etc-cni.bind where=/sysroot/etc/cni
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/etc/cni old=/etc/cni
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/usr/local/.state/etc-cni.bind old=/sysroot/usr/local/.state/etc-cni.bind
+2026-09-15T15:34:30Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/etc-cni.bind where=/sysroot/etc/cni
+2026-09-15T15:34:30Z DBG Bind mount end what=/etc/cni
+2026-09-15T15:34:30Z DBG Bind mount start what=/var/cores
+2026-09-15T15:34:30Z DBG Bind mount what=/sysroot/usr/local/.state/var-cores.bind where=/sysroot/var/cores
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/var/cores old=/var/cores
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/usr/local/.state/var-cores.bind old=/sysroot/usr/local/.state/var-cores.bind
+2026-09-15T15:34:30Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-cores.bind where=/sysroot/var/cores
+2026-09-15T15:34:30Z DBG Bind mount end what=/var/cores
+2026-09-15T15:34:30Z DBG Bind mount start what=/etc/init.d
+2026-09-15T15:34:30Z DBG Bind mount what=/sysroot/usr/local/.state/etc-init.d.bind where=/sysroot/etc/init.d
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/etc/init.d old=/etc/init.d
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/usr/local/.state/etc-init.d.bind old=/sysroot/usr/local/.state/etc-init.d.bind
+2026-09-15T15:34:30Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/etc-init.d.bind where=/sysroot/etc/init.d
+2026-09-15T15:34:30Z DBG Bind mount end what=/etc/init.d
+2026-09-15T15:34:30Z DBG Bind mount start what=/etc/iscsi
+2026-09-15T15:34:30Z DBG Bind mount what=/sysroot/usr/local/.state/etc-iscsi.bind where=/sysroot/etc/iscsi
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/etc/iscsi old=/etc/iscsi
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/usr/local/.state/etc-iscsi.bind old=/sysroot/usr/local/.state/etc-iscsi.bind
+2026-09-15T15:34:30Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/etc-iscsi.bind where=/sysroot/etc/iscsi
+2026-09-15T15:34:30Z DBG Bind mount end what=/etc/iscsi
+2026-09-15T15:34:30Z DBG Bind mount start what=/etc/k0s
+2026-09-15T15:34:30Z DBG Bind mount what=/sysroot/usr/local/.state/etc-k0s.bind where=/sysroot/etc/k0s
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/etc/k0s old=/etc/k0s
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/usr/local/.state/etc-k0s.bind old=/sysroot/usr/local/.state/etc-k0s.bind
+2026-09-15T15:34:30Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/etc-k0s.bind where=/sysroot/etc/k0s
+2026-09-15T15:34:30Z DBG Bind mount end what=/etc/k0s
+2026-09-15T15:34:30Z DBG Bind mount start what=/etc/kubernetes
+2026-09-15T15:34:30Z DBG Bind mount what=/sysroot/usr/local/.state/etc-kubernetes.bind where=/sysroot/etc/kubernetes
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/etc/kubernetes old=/etc/kubernetes
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/usr/local/.state/etc-kubernetes.bind old=/sysroot/usr/local/.state/etc-kubernetes.bind
+2026-09-15T15:34:30Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/etc-kubernetes.bind where=/sysroot/etc/kubernetes
+2026-09-15T15:34:30Z DBG Bind mount end what=/etc/kubernetes
+2026-09-15T15:34:30Z DBG Bind mount start what=/usr/libexec
+2026-09-15T15:34:30Z DBG Bind mount what=/sysroot/usr/local/.state/usr-libexec.bind where=/sysroot/usr/libexec
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/usr/libexec old=/usr/libexec
+2026-09-15T15:34:30Z DBG Cleaning for sysroot new=/usr/local/.state/usr-libexec.bind old=/sysroot/usr/local/.state/usr-libexec.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/usr-libexec.bind where=/sysroot/usr/libexec
+2026-09-15T15:34:31Z DBG Bind mount end what=/usr/libexec
+2026-09-15T15:34:31Z DBG Bind mount start what=/var/log
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/var-log.bind where=/sysroot/var/log
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/var/log old=/var/log
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/var-log.bind old=/sysroot/usr/local/.state/var-log.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-log.bind where=/sysroot/var/log
+2026-09-15T15:34:31Z DBG Bind mount end what=/var/log
+2026-09-15T15:34:31Z DBG Bind mount start what=/etc/modprobe.d
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/etc-modprobe.d.bind where=/sysroot/etc/modprobe.d
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/etc/modprobe.d old=/etc/modprobe.d
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/etc-modprobe.d.bind old=/sysroot/usr/local/.state/etc-modprobe.d.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/etc-modprobe.d.bind where=/sysroot/etc/modprobe.d
+2026-09-15T15:34:31Z DBG Bind mount end what=/etc/modprobe.d
+2026-09-15T15:34:31Z DBG Bind mount start what=/etc/pwx
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/etc-pwx.bind where=/sysroot/etc/pwx
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/etc/pwx old=/etc/pwx
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/etc-pwx.bind old=/sysroot/usr/local/.state/etc-pwx.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/etc-pwx.bind where=/sysroot/etc/pwx
+2026-09-15T15:34:31Z DBG Bind mount end what=/etc/pwx
+2026-09-15T15:34:31Z DBG Bind mount start what=/etc/rancher
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/etc-rancher.bind where=/sysroot/etc/rancher
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/etc/rancher old=/etc/rancher
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/etc-rancher.bind old=/sysroot/usr/local/.state/etc-rancher.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/etc-rancher.bind where=/sysroot/etc/rancher
+2026-09-15T15:34:31Z DBG Bind mount end what=/etc/rancher
+2026-09-15T15:34:31Z DBG Bind mount start what=/etc/runlevels
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/etc-runlevels.bind where=/sysroot/etc/runlevels
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/etc/runlevels old=/etc/runlevels
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/etc-runlevels.bind old=/sysroot/usr/local/.state/etc-runlevels.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/etc-runlevels.bind where=/sysroot/etc/runlevels
+2026-09-15T15:34:31Z DBG Bind mount end what=/etc/runlevels
+2026-09-15T15:34:31Z DBG Bind mount start what=/etc/ssh
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/etc-ssh.bind where=/sysroot/etc/ssh
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/etc/ssh old=/etc/ssh
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/etc-ssh.bind old=/sysroot/usr/local/.state/etc-ssh.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/etc-ssh.bind where=/sysroot/etc/ssh
+2026-09-15T15:34:31Z DBG Bind mount end what=/etc/ssh
+2026-09-15T15:34:31Z DBG Bind mount start what=/etc/sysconfig
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/etc-sysconfig.bind where=/sysroot/etc/sysconfig
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/etc/sysconfig old=/etc/sysconfig
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/etc-sysconfig.bind old=/sysroot/usr/local/.state/etc-sysconfig.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/etc-sysconfig.bind where=/sysroot/etc/sysconfig
+2026-09-15T15:34:31Z DBG Bind mount end what=/etc/sysconfig
+2026-09-15T15:34:31Z DBG Bind mount start what=/etc/systemd
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/etc-systemd.bind where=/sysroot/etc/systemd
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/etc/systemd old=/etc/systemd
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/etc-systemd.bind old=/sysroot/usr/local/.state/etc-systemd.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/etc-systemd.bind where=/sysroot/etc/systemd
+2026-09-15T15:34:31Z DBG Bind mount end what=/etc/systemd
+2026-09-15T15:34:31Z DBG Bind mount start what=/etc/zfs
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/etc-zfs.bind where=/sysroot/etc/zfs
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/etc/zfs old=/etc/zfs
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/etc-zfs.bind old=/sysroot/usr/local/.state/etc-zfs.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/etc-zfs.bind where=/sysroot/etc/zfs
+2026-09-15T15:34:31Z DBG Bind mount end what=/etc/zfs
+2026-09-15T15:34:31Z DBG Bind mount start what=/var/lib/ca-certificates
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-ca-certificates.bind where=/sysroot/var/lib/ca-certificates
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/var/lib/ca-certificates old=/var/lib/ca-certificates
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-ca-certificates.bind old=/sysroot/usr/local/.state/var-lib-ca-certificates.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-ca-certificates.bind where=/sysroot/var/lib/ca-certificates
+2026-09-15T15:34:31Z DBG Bind mount end what=/var/lib/ca-certificates
+2026-09-15T15:34:31Z DBG Bind mount start what=/var/lib/calico
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-calico.bind where=/sysroot/var/lib/calico
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/var/lib/calico old=/var/lib/calico
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-calico.bind old=/sysroot/usr/local/.state/var-lib-calico.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-calico.bind where=/sysroot/var/lib/calico
+2026-09-15T15:34:31Z DBG Bind mount end what=/var/lib/calico
+2026-09-15T15:34:31Z DBG Bind mount start what=/etc/ssl/certs
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/etc-ssl-certs.bind where=/sysroot/etc/ssl/certs
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/etc/ssl/certs old=/etc/ssl/certs
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/etc-ssl-certs.bind old=/sysroot/usr/local/.state/etc-ssl-certs.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/etc-ssl-certs.bind where=/sysroot/etc/ssl/certs
+2026-09-15T15:34:31Z DBG Bind mount end what=/etc/ssl/certs
+2026-09-15T15:34:31Z DBG Bind mount start what=/var/lib/cni
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-cni.bind where=/sysroot/var/lib/cni
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/var/lib/cni old=/var/lib/cni
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-cni.bind old=/sysroot/usr/local/.state/var-lib-cni.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-cni.bind where=/sysroot/var/lib/cni
+2026-09-15T15:34:31Z DBG Bind mount end what=/var/lib/cni
+2026-09-15T15:34:31Z DBG Bind mount start what=/var/lib/confexts
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-confexts.bind where=/sysroot/var/lib/confexts
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/var/lib/confexts old=/var/lib/confexts
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-confexts.bind old=/sysroot/usr/local/.state/var-lib-confexts.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-confexts.bind where=/sysroot/var/lib/confexts
+2026-09-15T15:34:31Z DBG Bind mount end what=/var/lib/confexts
+2026-09-15T15:34:31Z DBG Bind mount start what=/var/lib/containerd
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-containerd.bind where=/sysroot/var/lib/containerd
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/var/lib/containerd old=/var/lib/containerd
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-containerd.bind old=/sysroot/usr/local/.state/var-lib-containerd.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-containerd.bind where=/sysroot/var/lib/containerd
+2026-09-15T15:34:31Z DBG Bind mount end what=/var/lib/containerd
+2026-09-15T15:34:31Z DBG Bind mount start what=/var/lib/dbus
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-dbus.bind where=/sysroot/var/lib/dbus
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/var/lib/dbus old=/var/lib/dbus
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-dbus.bind old=/sysroot/usr/local/.state/var-lib-dbus.bind
+2026-09-15T15:34:31Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-dbus.bind where=/sysroot/var/lib/dbus
+2026-09-15T15:34:31Z DBG Bind mount end what=/var/lib/dbus
+2026-09-15T15:34:31Z DBG Bind mount start what=/var/lib/etcd
+2026-09-15T15:34:31Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-etcd.bind where=/sysroot/var/lib/etcd
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/var/lib/etcd old=/var/lib/etcd
+2026-09-15T15:34:31Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-etcd.bind old=/sysroot/usr/local/.state/var-lib-etcd.bind
+2026-09-15T15:34:32Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-etcd.bind where=/sysroot/var/lib/etcd
+2026-09-15T15:34:32Z DBG Bind mount end what=/var/lib/etcd
+2026-09-15T15:34:32Z DBG Bind mount start what=/var/lib/extensions
+2026-09-15T15:34:32Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-extensions.bind where=/sysroot/var/lib/extensions
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/var/lib/extensions old=/var/lib/extensions
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-extensions.bind old=/sysroot/usr/local/.state/var-lib-extensions.bind
+2026-09-15T15:34:32Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-extensions.bind where=/sysroot/var/lib/extensions
+2026-09-15T15:34:32Z DBG Bind mount end what=/var/lib/extensions
+2026-09-15T15:34:32Z DBG Bind mount start what=/var/lib/k0s
+2026-09-15T15:34:32Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-k0s.bind where=/sysroot/var/lib/k0s
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/var/lib/k0s old=/var/lib/k0s
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-k0s.bind old=/sysroot/usr/local/.state/var-lib-k0s.bind
+2026-09-15T15:34:32Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-k0s.bind where=/sysroot/var/lib/k0s
+2026-09-15T15:34:32Z DBG Bind mount end what=/var/lib/k0s
+2026-09-15T15:34:32Z DBG Bind mount start what=/var/lib/kairos
+2026-09-15T15:34:32Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-kairos.bind where=/sysroot/var/lib/kairos
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/var/lib/kairos old=/var/lib/kairos
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-kairos.bind old=/sysroot/usr/local/.state/var-lib-kairos.bind
+2026-09-15T15:34:32Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-kairos.bind where=/sysroot/var/lib/kairos
+2026-09-15T15:34:32Z DBG Bind mount end what=/var/lib/kairos
+2026-09-15T15:34:32Z DBG Bind mount start what=/var/lib/kubelet
+2026-09-15T15:34:32Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-kubelet.bind where=/sysroot/var/lib/kubelet
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/var/lib/kubelet old=/var/lib/kubelet
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-kubelet.bind old=/sysroot/usr/local/.state/var-lib-kubelet.bind
+2026-09-15T15:34:32Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-kubelet.bind where=/sysroot/var/lib/kubelet
+2026-09-15T15:34:32Z DBG Bind mount end what=/var/lib/kubelet
+2026-09-15T15:34:32Z DBG Bind mount start what=/var/lib/longhorn
+2026-09-15T15:34:32Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-longhorn.bind where=/sysroot/var/lib/longhorn
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/var/lib/longhorn old=/var/lib/longhorn
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-longhorn.bind old=/sysroot/usr/local/.state/var-lib-longhorn.bind
+2026-09-15T15:34:32Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-longhorn.bind where=/sysroot/var/lib/longhorn
+2026-09-15T15:34:32Z DBG Bind mount end what=/var/lib/longhorn
+2026-09-15T15:34:32Z DBG Bind mount start what=/var/lib/osd
+2026-09-15T15:34:32Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-osd.bind where=/sysroot/var/lib/osd
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/var/lib/osd old=/var/lib/osd
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-osd.bind old=/sysroot/usr/local/.state/var-lib-osd.bind
+2026-09-15T15:34:32Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-osd.bind where=/sysroot/var/lib/osd
+2026-09-15T15:34:32Z DBG Bind mount end what=/var/lib/osd
+2026-09-15T15:34:32Z DBG Bind mount start what=/var/lib/rancher
+2026-09-15T15:34:32Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-rancher.bind where=/sysroot/var/lib/rancher
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/var/lib/rancher old=/var/lib/rancher
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-rancher.bind old=/sysroot/usr/local/.state/var-lib-rancher.bind
+2026-09-15T15:34:32Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-rancher.bind where=/sysroot/var/lib/rancher
+2026-09-15T15:34:32Z DBG Bind mount end what=/var/lib/rancher
+2026-09-15T15:34:32Z DBG Bind mount start what=/var/lib/rook
+2026-09-15T15:34:32Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-rook.bind where=/sysroot/var/lib/rook
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/var/lib/rook old=/var/lib/rook
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-rook.bind old=/sysroot/usr/local/.state/var-lib-rook.bind
+2026-09-15T15:34:32Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-rook.bind where=/sysroot/var/lib/rook
+2026-09-15T15:34:32Z DBG Bind mount end what=/var/lib/rook
+2026-09-15T15:34:32Z DBG Bind mount start what=/var/lib/tailscale
+2026-09-15T15:34:32Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-tailscale.bind where=/sysroot/var/lib/tailscale
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/var/lib/tailscale old=/var/lib/tailscale
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-tailscale.bind old=/sysroot/usr/local/.state/var-lib-tailscale.bind
+2026-09-15T15:34:32Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-tailscale.bind where=/sysroot/var/lib/tailscale
+2026-09-15T15:34:32Z DBG Bind mount end what=/var/lib/tailscale
+2026-09-15T15:34:32Z DBG Bind mount start what=/var/lib/wicked
+2026-09-15T15:34:32Z DBG Bind mount what=/sysroot/usr/local/.state/var-lib-wicked.bind where=/sysroot/var/lib/wicked
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/var/lib/wicked old=/var/lib/wicked
+2026-09-15T15:34:32Z DBG Cleaning for sysroot new=/usr/local/.state/var-lib-wicked.bind old=/sysroot/usr/local/.state/var-lib-wicked.bind
+2026-09-15T15:34:32Z DBG mount ready options=["bind"] type=overlay what=/sysroot/usr/local/.state/var-lib-wicked.bind where=/sysroot/var/lib/wicked
+2026-09-15T15:34:32Z DBG Bind mount end what=/var/lib/wicked
+2026-09-15T15:34:32Z WRN
+2026-09-15T15:34:32Z DBG detecting boot state
+2026-09-15T15:34:32Z DBG Detected in-RAM boot; classifying as Active
+2026-09-15T15:34:32Z DBG Adding line to fstab what="tmpfs /tmp tmpfs rw 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/dev/vda1 /oem ext4 suid,dev,exec,async,rw 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="tmpfs /run/overlay tmpfs size=25% 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/dev/vda2 /usr/local ext4 rw 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="overlay /var overlay lowerdir=/sysroot/var,upperdir=/run/overlay/var/.overlay/upper,workdir=/run/overlay/var/.overlay/work 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="overlay /etc overlay workdir=/run/overlay/etc/.overlay/work,lowerdir=/sysroot/etc,upperdir=/run/overlay/etc/.overlay/upper 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="overlay /srv overlay lowerdir=/sysroot/srv,upperdir=/run/overlay/srv/.overlay/upper,workdir=/run/overlay/srv/.overlay/work 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/home.bind /home overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/opt.bind /opt overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/root.bind /root overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/etc-cni.bind /etc/cni overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-cores.bind /var/cores overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/etc-init.d.bind /etc/init.d overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/etc-iscsi.bind /etc/iscsi overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/etc-k0s.bind /etc/k0s overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/etc-kubernetes.bind /etc/kubernetes overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/usr-libexec.bind /usr/libexec overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-log.bind /var/log overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/etc-modprobe.d.bind /etc/modprobe.d overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/etc-pwx.bind /etc/pwx overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/etc-rancher.bind /etc/rancher overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/etc-runlevels.bind /etc/runlevels overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/etc-ssh.bind /etc/ssh overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/etc-sysconfig.bind /etc/sysconfig overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/etc-systemd.bind /etc/systemd overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/etc-zfs.bind /etc/zfs overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-ca-certificates.bind /var/lib/ca-certificates overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-calico.bind /var/lib/calico overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/etc-ssl-certs.bind /etc/ssl/certs overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-cni.bind /var/lib/cni overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-confexts.bind /var/lib/confexts overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-containerd.bind /var/lib/containerd overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-dbus.bind /var/lib/dbus overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-etcd.bind /var/lib/etcd overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-extensions.bind /var/lib/extensions overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-k0s.bind /var/lib/k0s overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-kairos.bind /var/lib/kairos overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-kubelet.bind /var/lib/kubelet overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-longhorn.bind /var/lib/longhorn overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-osd.bind /var/lib/osd overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-rancher.bind /var/lib/rancher overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-rook.bind /var/lib/rook overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-tailscale.bind /var/lib/tailscale overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Adding line to fstab what="/usr/local/.state/var-lib-wicked.bind /var/lib/wicked overlay bind 0 0"
+2026-09-15T15:34:32Z DBG Enabling system extensions
+2026-09-15T15:34:32Z DBG detecting boot state
+2026-09-15T15:34:32Z DBG Detected in-RAM boot; classifying as Active
+2026-09-15T15:34:32Z DBG Enabling config extensions
+2026-09-15T15:34:32Z INF Running initramfs stage
+2026-09-15T15:34:32Z INF Running stage: initramfs.before
+2026-09-15T15:34:32Z DBG Generating op for stage 'Datasource handling.Move old datasource to new location'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Datasource handling.Remove old userdata'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Datasource handling.Pull data from provider'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Datasource handling.3'
+2026-09-15T15:34:32Z DBG Generating op for stage 'RPI configs.Set a safe date before user creation for RPI without hardware clocks'
+2026-09-15T15:34:32Z DBG Generating op for stage '/system/oem/29_blacklist.yaml.Blacklist bpfilter on Alpine ( bug: https://github.com/kairos-io/kairos/issues/277 )'
+2026-09-15T15:34:32Z DBG Generating op for stage 'L4T RootFS Prep for Orin NX.Apply NVIDIA binaries'
+2026-09-15T15:34:32Z DBG Reading '/system/oem/29_blacklist.yaml'
+2026-09-15T15:34:32Z DBG Executing stage '/system/oem/29_blacklist.yaml.Blacklist bpfilter on Alpine ( bug: https://github.com/kairos-io/kairos/issues/277 )'
+2026-09-15T15:34:32Z DBG Reading '/system/oem/00_datasource.yaml'
+2026-09-15T15:34:32Z DBG Executing stage 'Datasource handling.Move old datasource to new location'
+2026-09-15T15:34:32Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:32Z WRN (conditional) Skip 'service manager doesn't match openrc' stage name: /system/oem/29_blacklist.yaml.Blacklist bpfilter on Alpine ( bug: https://github.com/kairos-io/kairos/issues/277 )
+2026-09-15T15:34:32Z DBG Reading '/system/oem/11_RPI.yaml'
+2026-09-15T15:34:32Z DBG Executing stage 'RPI configs.Set a safe date before user creation for RPI without hardware clocks'
+2026-09-15T15:34:32Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -f "/proc/device-tree/model" ] && grep -i "Raspberry Pi" "/proc/device-tree/model": exit status 1)' stage name: RPI configs.Set a safe date before user creation for RPI without hardware clocks
+2026-09-15T15:34:32Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -d /oem/userdata ] && [ ! -d /oem/95_userdata ]: exit status 1)' stage name: Datasource handling.Move old datasource to new location
+2026-09-15T15:34:32Z DBG Reading '/system/oem/30-prepare-l4t-rootfs.yaml'
+2026-09-15T15:34:32Z DBG Executing stage 'L4T RootFS Prep for Orin NX.Apply NVIDIA binaries'
+2026-09-15T15:34:32Z DBG Reading '/system/oem/00_datasource.yaml'
+2026-09-15T15:34:32Z DBG Executing stage 'Datasource handling.Remove old userdata'
+2026-09-15T15:34:32Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -f "/proc/device-tree/model" ] && grep -i "Orin NX" "/proc/device-tree/model": exit status 1)' stage name: L4T RootFS Prep for Orin NX.Apply NVIDIA binaries
+2026-09-15T15:34:32Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -d /oem/userdata ] && [ -d /oem/95_userdata ]: exit status 1)' stage name: Datasource handling.Remove old userdata
+2026-09-15T15:34:32Z DBG Reading '/system/oem/00_datasource.yaml'
+2026-09-15T15:34:32Z DBG Executing stage 'Datasource handling.Pull data from provider'
+2026-09-15T15:34:32Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ ! -e /oem/95_userdata ] && ([ ! -f /run/cos/uki_boot_mode ] || grep -q "kairos.pull_datasources" /proc/cmdline ): exit status 1)' stage name: Datasource handling.Pull data from provider
+2026-09-15T15:34:32Z DBG Reading '/system/oem/00_datasource.yaml'
+2026-09-15T15:34:32Z DBG Executing stage 'Datasource handling.3'
+2026-09-15T15:34:32Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ ! -e /oem/95_userdata ]: exit status 1)' stage name: Datasource handling.3
+2026-09-15T15:34:32Z INF Done executing stage 'initramfs.before'
+2026-09-15T15:34:32Z INF Running stage: initramfs
+2026-09-15T15:34:32Z DBG Generating op for stage 'Rootfs Layout Settings.Create journalctl /var/log/journal dir'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Rootfs Layout Settings.Restore /etc/machine-id for systemd systems'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Rootfs Layout Settings.Ensure /etc/machine-id for systemd systems'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Rootfs Layout Settings.Ensure /etc/machine-id for openrc systems'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Start agent.0'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Notify Kairos Plugins of Elemental Events.0'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Default network configuration.Enable systemd-network config files for DHCP'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Default network configuration.Disable NetworkManager and wicked'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Default network configuration.Link /etc/resolv.conf to systemd resolv.conf'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Default network configuration.Enabled systemd-networkd on Red Hat if available'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Default network configuration.Enable systemd-resolved on Red Hat if available'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Enable EFI assessment.Override systemd-boot services to enable RW on /efi partition'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Enable EFI assessment.Enable boot assessment'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Default config.Generate host keys'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Create openrc services.Create OpenRC services'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Create openrc services.Enable OpenRC services'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Default config.Default systemd config'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Default config.Create systemd services'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Default config.Override systemd-tpm2-setup/systemd-pcrproduct with temporary RW under /efi'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Default config.Enable systemd services'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Default user, permissions and serial login.Setup groups.0'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Default user, permissions and serial login.Setup users.1'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Default user, permissions and serial login.Set user password if running in live or uki.2'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Default user, permissions and serial login.Setup sudo.3'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Default user, permissions and serial login.Ensure runtime permission.4'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Default user, permissions and serial login.Ensure runtime permission.5'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Nvidia jetson specific files.Create files'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Root autologin.0'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Root autologin.Autologin on livecd for OpenRC'
+2026-09-15T15:34:32Z DBG Generating op for stage 'SELinux.Relabelling'
+2026-09-15T15:34:32Z DBG Generating op for stage '/system/oem/31_hosts.yaml.Ensure persistent hosts file'
+2026-09-15T15:34:32Z DBG Generating op for stage '/system/oem/31_hosts.yaml.Ensure persistent /etc/ directory'
+2026-09-15T15:34:32Z DBG Generating op for stage '/system/oem/31_hosts.yaml.Ensure persistent hostname'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Profile extensions.Set KUBECONFIG to access k9s and kubectl'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Start recovery on tty1.Starts kairos-recovery and generate a temporary pass'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Start recovery on tty1.Starts kairos-recovery for openRC based systems'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Start reset on tty1.Starts kairos-reset for systemd based systems'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Start reset on tty1.Starts kairos-reset for openRC-based systems'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Start installer on tty1..0'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Start installer on tty1..1'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Start installer on tty1..2'
+2026-09-15T15:34:32Z DBG Generating op for stage 'Start installer on tty1..3'
+2026-09-15T15:34:32Z DBG Generating op for stage 'sysext and confext configuration.systemd-sysext/confext uki config'
+2026-09-15T15:34:32Z DBG Generating op for stage 'sysext and confext configuration.systemd-sysext/confext config'
+2026-09-15T15:34:32Z DBG Generating op for stage 'sysext and confext configuration.systemd-sysext set hierarchy system-wide'
+2026-09-15T15:34:32Z DBG Generating op for stage 'sysext and confext configuration.systemd-sysext/confext initramfs settings'
+2026-09-15T15:34:32Z DBG Reading '/system/oem/31_hosts.yaml'
+2026-09-15T15:34:32Z DBG Executing stage '/system/oem/31_hosts.yaml.Ensure persistent hosts file'
+2026-09-15T15:34:32Z DBG Reading '/system/oem/12_nvidia.yaml'
+2026-09-15T15:34:32Z DBG Executing stage 'Nvidia jetson specific files.Create files'
+2026-09-15T15:34:32Z DBG If statement result 
+2026-09-15T15:34:32Z INF Processing stage step '/system/oem/31_hosts.yaml.Ensure persistent hosts file'. ( commands: 2, files: 1, ... )
+2026-09-15T15:34:32Z DBG Stage: schema.Stage{
+  Commands: []string{
+    "rm -f /etc/hosts",
+    "ln -sf /usr/local/etc/hosts /etc/hosts",
+  },
+  Files: []schema.File{
+    schema.File{
+      Path: "/usr/local/etc/hosts",
+      Permissions: 420,
+      Content: "127.0.0.1 localhost\n::1       localhost\n",
+    },
+  },
+  Directories: []schema.Directory{
+    schema.Directory{
+      Path: "/usr/local/etc/",
+      Permissions: 493,
+    },
+  },
+  If: "[ ! -f \"/run/cos/recovery_mode\" ] && [ ! -L \"/etc/hosts\" ]",
+  Name: "Ensure persistent hosts file",
+2026-09-15T15:34:32Z DBG Creating directory /usr/local/etc
+2026-09-15T15:34:32Z DBG Creating directory /usr/local/etc/
+2026-09-15T15:34:32Z ERR mkdir /usr/local/etc/: file exists
+2026-09-15T15:34:32Z ERR Error on file /system/oem/31_hosts.yaml on stage Ensure persistent hosts file: 1 error occurred:
+	* mkdir /usr/local/etc/: file exists
+2026-09-15T15:34:32Z DBG Creating file /usr/local/etc/hosts
+2026-09-15T15:34:32Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -f "/sys/firmware/devicetree/base/model" ] && grep -i jetson "/sys/firmware/devicetree/base/model"
+: exit status 1)' stage name: Nvidia jetson specific files.Create files
+2026-09-15T15:34:32Z DBG Reading '/system/oem/08_ssh.yaml'
+2026-09-15T15:34:32Z DBG Executing stage 'Default config.Generate host keys'
+2026-09-15T15:34:32Z INF Processing stage step 'Default config.Generate host keys'. ( commands: 2, files: 0, ... )
+2026-09-15T15:34:32Z DBG Stage: schema.Stage{
+  Commands: []string{
+    "test -f /etc/ssh/ssh_host_rsa_key     || ssh-keygen -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key -N ''",
+    "test -f /etc/ssh/ssh_host_ed25519_key || ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ''",
+  },
+  Name: "Generate host keys",
+2026-09-15T15:34:32Z DBG Reading '/system/oem/05_network.yaml'
+2026-09-15T15:34:32Z DBG Executing stage 'Default network configuration.Enable systemd-network config files for DHCP'
+2026-09-15T15:34:32Z DBG Reading '/system/oem/02_agent.yaml'
+2026-09-15T15:34:32Z DBG Executing stage 'Start agent.0'
+2026-09-15T15:34:32Z DBG Reading '/system/oem/00_rootfs.yaml'
+2026-09-15T15:34:32Z DBG Executing stage 'Rootfs Layout Settings.Create journalctl /var/log/journal dir'
+2026-09-15T15:34:32Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:32Z INF Processing stage step 'Rootfs Layout Settings.Create journalctl /var/log/journal dir'. ( commands: 0, files: 0, ... )
+2026-09-15T15:34:32Z DBG Stage: schema.Stage{
+  Directories: []schema.Directory{
+    schema.Directory{
+      Path: "/var/log/journal",
+    },
+  },
+  Name: "Create journalctl /var/log/journal dir",
+  OnlyIfServiceManager: "systemd",
+2026-09-15T15:34:32Z INF Running layout plugin
+2026-09-15T15:34:32Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:32Z DBG Reading '/system/oem/25_autologin.yaml'
+2026-09-15T15:34:32Z DBG Executing stage 'Root autologin.0'
+2026-09-15T15:34:32Z DBG If statement result 
+2026-09-15T15:34:32Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:32Z INF Processing stage step 'Start agent.0'. ( commands: 1, files: 1, ... )
+2026-09-15T15:34:32Z DBG Stage: schema.Stage{
+  Commands: []string{
+    "systemctl enable kairos-agent",
+  },
+  Files: []schema.File{
+    schema.File{
+      Path: "/etc/systemd/system/kairos-agent.service",
+      Permissions: 420,
+      Content: "[Unit]\nDescription=kairos agent\nAfter=cos-setup-network.service\nWants=network.target\n[Service]\nRestart=on-failure\nRestartSec=5s\nExecStart=/usr/bin/kairos-agent start\n[Install]\nWantedBy=multi-user.target\n",
+    },
+  },
+  If: "[ ! -f \"/run/cos/recovery_mode\" ]",
+  OnlyIfServiceManager: "systemd",
+2026-09-15T15:34:32Z DBG Creating file /etc/systemd/system/kairos-agent.service
+2026-09-15T15:34:32Z DBG running stage (OnlyIfOs regex (Ubuntu.*|Debian.*|Fedora.*|CentOS.*|Rocky.*|AlmaLinux.*|Oracle.*Linux.*|SUSE.*|[Oo]penSUSE.*|Hadron.*|Red.*Hat.*) matches os name 'Hadron Linux
+2026-09-15T15:34:32Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run (grep -qv "interactive-install" /proc/cmdline || grep -qv "install-mode-interactive" /proc/cmdline ) && \
+([ -f /run/cos/live_mode ] || [ -f /run/cos/uki_install_mode ])
+: exit status 1)' stage name: Root autologin.0
+2026-09-15T15:34:32Z DBG Empty command output
+2026-09-15T15:34:32Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:33Z INF Processing stage step 'Default network configuration.Enable systemd-network config files for DHCP'. ( commands: 1, files: 2, ... )
+2026-09-15T15:34:33Z DBG Stage: schema.Stage{
+  Commands: []string{
+    "networkctl reload",
+  },
+  Files: []schema.File{
+    schema.File{
+      Path: "/etc/systemd/network/20-dhcp.network",
+      Permissions: 420,
+      Content: "[Match]\nName=en*\n[Network]\nDHCP=yes\n[DHCP]\nClientIdentifier=mac\n",
+    },
+    schema.File{
+      Path: "/etc/systemd/network/20-dhcp-legacy.network",
+      Permissions: 420,
+      Content: "[Match]\nName=eth*\n[Network]\nDHCP=yes\n[DHCP]\nClientIdentifier=mac\n",
+    },
+  },
+  Name: "Enable systemd-network config files for DHCP",
+  OnlyIfOs: "Ubuntu.*|Debian.*|Fedora.*|CentOS.*|Rocky.*|AlmaLinux.*|Oracle.*Linux.*|SUSE.*|[Oo]penSUSE.*|Hadron.*|Red.*Hat.*",
+  OnlyIfServiceManager: "systemd",
+2026-09-15T15:34:33Z DBG Creating file /etc/systemd/network/20-dhcp.network
+2026-09-15T15:34:33Z DBG Creating file /etc/systemd/network/20-dhcp-legacy.network
+2026-09-15T15:34:33Z DBG Command output: Generating public/private rsa key pair.
+Your identification has been saved in /etc/ssh/ssh_host_rsa_key
+Your public key has been saved in /etc/ssh/ssh_host_rsa_key.pub
+The key fingerprint is:
+SHA256:EzFP/FhBR5+/2jypTIZhnO0yt16lF7nqWk8m5Oh1FWo root@localhost
+The key's randomart image is:
++---[RSA 4096]----+
+|        o...ooo  |
+|         =. .. ..|
+|        . .+   o.|
+|         .o + . +|
+|        S  = E o+|
+|         .. O  .*|
+|           = X.Bo|
+|          . X &+ |
+|           o+O.+.|
++----[SHA256]-----+
+2026-09-15T15:34:32Z DBG Command output: Created symlink '/etc/systemd/system/multi-user.target.wants/kairos-agent.service' 
+ '/etc/systemd/system/kairos-agent.service'.
+2026-09-15T15:34:33Z INF Running layout plugin
+2026-09-15T15:34:33Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:33Z DBG Empty command output
+2026-09-15T15:34:33Z INF Running layout plugin
+2026-09-15T15:34:33Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:33Z DBG Command output: Running in chroot, ignoring command 'reload'
+2026-09-15T15:34:33Z INF Running layout plugin
+2026-09-15T15:34:33Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:33Z DBG Command output: Generating public/private ed25519 key pair.
+Your identification has been saved in /etc/ssh/ssh_host_ed25519_key
+Your public key has been saved in /etc/ssh/ssh_host_ed25519_key.pub
+The key fingerprint is:
+SHA256:z1CCcODxzy61Ncd3Ujca3YQl05+iltNwUfZuwnV6q5g root@localhost
+The key's randomart image is:
++--[ED25519 256]--+
+|    +..       +*o|
+|   . = .     .+++|
+|    . o . .  ..oX|
+|       o o o +o*=|
+|        S o O.B =|
+|       o * B o *.|
+|      . o + .  . |
+|       .    o .  |
+|           E .   |
++----[SHA256]-----+
+2026-09-15T15:34:33Z INF Running layout plugin
+2026-09-15T15:34:33Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:33Z DBG Reading '/system/oem/31_hosts.yaml'
+2026-09-15T15:34:33Z DBG Executing stage '/system/oem/31_hosts.yaml.Ensure persistent /etc/ directory'
+2026-09-15T15:34:33Z DBG Reading '/system/oem/05_network.yaml'
+2026-09-15T15:34:33Z DBG Executing stage 'Default network configuration.Disable NetworkManager and wicked'
+2026-09-15T15:34:33Z WRN (conditional) Skip 'OnlyIfOs regex ([Oo]penSUSE.*|SUSE.*) doesn't match os name Hadron Linux' stage name: Default network configuration.Disable NetworkManager and wicked
+2026-09-15T15:34:33Z DBG Reading '/system/oem/02_notify.yaml'
+2026-09-15T15:34:33Z DBG Executing stage 'Notify Kairos Plugins of Elemental Events.0'
+2026-09-15T15:34:33Z DBG Reading '/system/oem/25_autologin.yaml'
+2026-09-15T15:34:33Z DBG Executing stage 'Root autologin.Autologin on livecd for OpenRC'
+2026-09-15T15:34:33Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ ! -f "/run/cos/recovery_mode" ] && [ ! -d /usr/local/etc ]: exit status 1)' stage name: /system/oem/31_hosts.yaml.Ensure persistent /etc/ directory
+2026-09-15T15:34:33Z DBG Reading '/system/oem/00_rootfs.yaml'
+2026-09-15T15:34:33Z DBG Executing stage 'Rootfs Layout Settings.Restore /etc/machine-id for systemd systems'
+2026-09-15T15:34:33Z DBG Reading '/system/oem/09_openrc_services.yaml'
+2026-09-15T15:34:33Z DBG Executing stage 'Create openrc services.Create OpenRC services'
+2026-09-15T15:34:33Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:33Z WRN (conditional) Skip 'service manager doesn't match openrc' stage name: Create openrc services.Create OpenRC services
+2026-09-15T15:34:33Z DBG If statement result 
+2026-09-15T15:34:33Z INF Processing stage step 'Notify Kairos Plugins of Elemental Events.0'. ( commands: 1, files: 0, ... )
+2026-09-15T15:34:33Z DBG Stage: schema.Stage{
+  Commands: []string{
+    "kairos-agent notify agent.boot",
+  },
+  If: "[ ! -f \"/run/cos/recovery_mode\" ] && [ ! -f \"/run/cos/live_mode\" ]",
+2026-09-15T15:34:33Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run (grep -qv "interactive-install" /proc/cmdline || grep -qv "install-mode-interactive" /proc/cmdline) && \
+[ -f /run/cos/live_mode ]
+: exit status 1)' stage name: Root autologin.Autologin on livecd for OpenRC
+2026-09-15T15:34:33Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ ! -f "/run/cos/recovery_mode" ] && [ -s /usr/local/etc/machine-id ]: exit status 1)' stage name: Rootfs Layout Settings.Restore /etc/machine-id for systemd systems
+2026-09-15T15:34:34Z DBG Command output: warning: skipping /oem/95_userdata/userdata (extension).
+WARNING: jsonschema: '' does not validate with file:///schema.json#/required: missing properties: 'users'
+[90m2026-09-15T15:34:33Z
+[0m 
+[32mINF
+[0m 
+[1mKairos Agent
+[0m 
+[36mversion=
+[0mv4.3.0-rc3-5-g3b0005495
+[90m2026-09-15T15:34:33Z
+[0m 
+[32mINF
+[0m 
+[1mBoot Mode
+[0m 
+[36mboot_mode=
+[0mactive_boot
+[90m2026-09-15T15:34:33Z
+[0m 
+[32mINF
+[0m 
+[1mBoot in uki mode
+[0m 
+[36mresult=
+[0mfalse
+2026-09-15T15:34:34Z INF Running layout plugin
+2026-09-15T15:34:34Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:34Z DBG Reading '/system/oem/09_openrc_services.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Create openrc services.Enable OpenRC services'
+2026-09-15T15:34:34Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:34Z WRN (conditional) Skip 'service manager doesn't match openrc' stage name: Create openrc services.Enable OpenRC services
+2026-09-15T15:34:34Z DBG Reading '/system/oem/05_network.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Default network configuration.Link /etc/resolv.conf to systemd resolv.conf'
+2026-09-15T15:34:34Z DBG Reading '/system/oem/26_selinux.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'SELinux.Relabelling'
+2026-09-15T15:34:34Z DBG If statement result 
+2026-09-15T15:34:34Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:34Z INF Processing stage step 'Default network configuration.Link /etc/resolv.conf to systemd resolv.conf'. ( commands: 2, files: 0, ... )
+2026-09-15T15:34:34Z DBG Stage: schema.Stage{
+  Commands: []string{
+    "rm /etc/resolv.conf",
+    "ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf",
+  },
+  If: "[ -f /etc/hosts ]",
+  Name: "Link /etc/resolv.conf to systemd resolv.conf",
+  OnlyIfServiceManager: "systemd",
+2026-09-15T15:34:34Z DBG Reading '/system/oem/00_rootfs.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Rootfs Layout Settings.Ensure /etc/machine-id for systemd systems'
+2026-09-15T15:34:34Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:34Z INF Processing stage step 'Rootfs Layout Settings.Ensure /etc/machine-id for systemd systems'. ( commands: 1, files: 0, ... )
+2026-09-15T15:34:34Z DBG Stage: schema.Stage{
+  Commands: []string{
+    "systemd-machine-id-setup",
+  },
+  Name: "Ensure /etc/machine-id for systemd systems",
+  OnlyIfServiceManager: "systemd",
+2026-09-15T15:34:34Z DBG Reading '/system/oem/31_hosts.yaml'
+2026-09-15T15:34:34Z DBG Executing stage '/system/oem/31_hosts.yaml.Ensure persistent hostname'
+2026-09-15T15:34:34Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run cat /proc/cmdline | grep "selinux=1"
+: exit status 1)' stage name: SELinux.Relabelling
+2026-09-15T15:34:34Z DBG Empty command output
+2026-09-15T15:34:34Z ERR Error on file /system/oem/05_network.yaml on stage Link /etc/resolv.conf to systemd resolv.conf: 1 error occurred:
+	* failed to run rm /etc/resolv.conf: exit status 1
+command output:
+rm: cannot remove '/etc/resolv.conf': No such file or directory
+2026-09-15T15:34:34Z INF Running layout plugin
+2026-09-15T15:34:34Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:34Z DBG If statement result 
+2026-09-15T15:34:34Z INF Processing stage step '/system/oem/31_hosts.yaml.Ensure persistent hostname'. ( commands: 2, files: 1, ... )
+2026-09-15T15:34:34Z DBG Stage: schema.Stage{
+  Commands: []string{
+    "rm -f /etc/hostname",
+    "ln -sf /usr/local/etc/hostname /etc/hostname",
+  },
+  Files: []schema.File{
+    schema.File{
+      Path: "/usr/local/etc/hostname",
+      Permissions: 420,
+    },
+  },
+  If: "[ ! -f \"/run/cos/recovery_mode\" ] && [ ! -L \"/etc/hostname\" ]",
+  Hostname: "kairos-{{ trunc 4 .MachineID }}",
+  Name: "Ensure persistent hostname",
+2026-09-15T15:34:34Z DBG Creating file /usr/local/etc/hostname
+2026-09-15T15:34:34Z DBG Command output: Initializing machine ID from random generator.
+2026-09-15T15:34:34Z INF Running layout plugin
+2026-09-15T15:34:34Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:34Z DBG Empty command output
+2026-09-15T15:34:34Z DBG Empty command output
+2026-09-15T15:34:34Z INF Running layout plugin
+2026-09-15T15:34:34Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:34Z DBG Reading '/system/oem/05_network.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Default network configuration.Enabled systemd-networkd on Red Hat if available'
+2026-09-15T15:34:34Z DBG Reading '/system/oem/09_systemd_services.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Default config.Default systemd config'
+2026-09-15T15:34:34Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:34Z INF Processing stage step 'Default config.Default systemd config'. ( commands: 1, files: 0, ... )
+2026-09-15T15:34:34Z DBG Stage: schema.Stage{
+  Commands: []string{
+    "systemctl set-default multi-user.target",
+  },
+  Name: "Default systemd config",
+  Systemctl: schema.Systemctl{
+    Enable: []string{
+      "multi-user.target",
+      "getty@tty1",
+      "iscsid",
+      "logrotate.timer",
+    },
+    Mask: []string{
+      "purge-kernels",
+    },
+  },
+  OnlyIfServiceManager: "systemd",
+2026-09-15T15:34:34Z DBG If statement result 
+2026-09-15T15:34:34Z WRN (conditional) Skip 'OnlyIfOs regex (Red.*Hat.*) doesn't match os name Hadron Linux' stage name: Default network configuration.Enabled systemd-networkd on Red Hat if available
+2026-09-15T15:34:34Z DBG Reading '/system/oem/00_rootfs.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Rootfs Layout Settings.Ensure /etc/machine-id for openrc systems'
+2026-09-15T15:34:34Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:34Z WRN (conditional) Skip 'service manager doesn't match openrc' stage name: Rootfs Layout Settings.Ensure /etc/machine-id for openrc systems
+2026-09-15T15:34:34Z DBG Reading '/system/oem/32_profile.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Profile extensions.Set KUBECONFIG to access k9s and kubectl'
+2026-09-15T15:34:34Z INF Processing stage step 'Profile extensions.Set KUBECONFIG to access k9s and kubectl'. ( commands: 0, files: 1, ... )
+2026-09-15T15:34:34Z DBG Stage: schema.Stage{
+  Files: []schema.File{
+    schema.File{
+      Path: "/etc/profile.d/kairos.sh",
+      Permissions: 420,
+      Content: "if [ -z \"$KUBECONFIG\" ]; then\n    if [ -e /etc/rancher/k3s/k3s.yaml ]; then\n        export KUBECONFIG=\"/etc/rancher/k3s/k3s.yaml\"\n    fi\nfi\n",
+    },
+  },
+  Name: "Set KUBECONFIG to access k9s and kubectl",
+2026-09-15T15:34:34Z DBG Creating file /etc/profile.d/kairos.sh
+2026-09-15T15:34:34Z DBG Command output: Created symlink '/etc/systemd/system/default.target' 
+ '/usr/lib/systemd/system/multi-user.target'.
+2026-09-15T15:34:34Z INF Running layout plugin
+2026-09-15T15:34:34Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:34Z DBG Run template output="Failed to enable unit: Unit logrotate.timer does not exist\n"
+2026-09-15T15:34:34Z ERR Error on file /system/oem/09_systemd_services.yaml on stage Default systemd config: 1 error occurred:
+	* failed to run systemctl enable logrotate.timer: exit status 1
+2026-09-15T15:34:34Z INF Running layout plugin
+2026-09-15T15:34:34Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:34Z DBG Reading '/system/oem/50_recovery.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Start recovery on tty1.Starts kairos-recovery and generate a temporary pass'
+2026-09-15T15:34:34Z DBG Reading '/system/oem/09_systemd_services.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Default config.Create systemd services'
+2026-09-15T15:34:34Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:34Z INF Processing stage step 'Default config.Create systemd services'. ( commands: 0, files: 5, ... )
+2026-09-15T15:34:34Z DBG Stage: schema.Stage{
+  Files: []schema.File{
+    schema.File{
+      Path: "/etc/systemd/system/cos-setup-boot.service",
+      Permissions: 420,
+      Content: "[Unit]\nDescription=cOS system configuration\nBefore=getty.target\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/bin/kairos-agent run-stage boot\n\n[Install]\nWantedBy=multi-user.target\n",
+    },
+    schema.File{
+      Path: "/etc/systemd/system/cos-setup-fs.service",
+      Permissions: 420,
+      Content: "[Unit]\nDescription=cOS system after FS setup\nDefaultDependencies=no\nAfter=local-fs.target\nWants=local-fs.target\nBefore=sysinit.target\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/bin/kairos-agent run-stage fs\n# Belt-and-suspenders for the sysinit.target ordering: this\n# service is Before=sysinit.target, so if it hangs, every\n# later target (basic, multi-user) hangs with it and sshd\n# never comes up. run-stage fs pulls in config_url fetches\n# against a network that is not yet up at this ordering\n# point, and any silent stall inside kairos-agent (an\n# unbounded http.Get in old sdk/collector builds, a wedged\n# DNS resolver, a slow yip stage) becomes an invisible boot\n# hang. Cap the whole stage so a stall fails cleanly and\n# boot proceeds instead of dying at the login prompt.\nTimeoutStartSec=90\n\n[Install]\nWantedBy=sysinit.target\n",
+    },
+    schema.File{
+      Path: "/etc/systemd/system/cos-setup-network.service",
+      Permissions: 420,
+      Content: "[Unit]\nDescription=cOS setup after network\nAfter=network-online.target\n\n[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/usr/bin/kairos-agent run-stage network\n\n[Install]\nWantedBy=multi-user.target\n",
+    },
+    schema.File{
+      Path: "/etc/systemd/system/cos-setup-reconcile.service",
+      Permissions: 420,
+      Content: "[Unit]\nDescription=cOS setup reconciler\n\n[Service]\nNice=19\nIOSchedulingClass=2\nIOSchedulingPriority=7\nType=oneshot\nExecStart=/bin/bash -c \"systemd-inhibit /usr/bin/kairos-agent run-stage reconcile\"\nTimeoutStopSec=180\nKillMode=process\nKillSignal=SIGINT\n\n[Install]\nWantedBy=multi-user.target\n",
+    },
+    schema.File{
+      Path: "/etc/systemd/system/cos-setup-reconcile.timer",
+      Permissions: 420,
+      Content: "[Unit]\nDescription=cOS setup reconciler\n\n[Timer]\nOnBootSec=5min\nOnUnitActiveSec=60min\nUnit=cos-setup-reconcile.service\n\n[Install]\nWantedBy=multi-user.target\n",
+    },
+  },
+  Name: "Create systemd services",
+  OnlyIfServiceManager: "systemd",
+2026-09-15T15:34:34Z DBG Creating file /etc/systemd/system/cos-setup-boot.service
+2026-09-15T15:34:34Z DBG Creating file /etc/systemd/system/cos-setup-fs.service
+2026-09-15T15:34:34Z DBG Creating file /etc/systemd/system/cos-setup-network.service
+2026-09-15T15:34:34Z DBG Creating file /etc/systemd/system/cos-setup-reconcile.service
+2026-09-15T15:34:34Z DBG Reading '/system/oem/05_network.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Default network configuration.Enable systemd-resolved on Red Hat if available'
+2026-09-15T15:34:34Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run grep -q "kairos.remote_recovery_mode" /proc/cmdline
+: exit status 1)' stage name: Start recovery on tty1.Starts kairos-recovery and generate a temporary pass
+2026-09-15T15:34:34Z DBG Creating file /etc/systemd/system/cos-setup-reconcile.timer
+2026-09-15T15:34:34Z INF Running layout plugin
+2026-09-15T15:34:34Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:34Z DBG If statement result 
+2026-09-15T15:34:34Z WRN (conditional) Skip 'OnlyIfOs regex (Red.*Hat.*) doesn't match os name Hadron Linux' stage name: Default network configuration.Enable systemd-resolved on Red Hat if available
+2026-09-15T15:34:34Z DBG Reading '/system/oem/09_systemd_services.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Default config.Override systemd-tpm2-setup/systemd-pcrproduct with temporary RW under /efi'
+2026-09-15T15:34:34Z DBG Reading '/system/oem/08_efi_assessment.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Enable EFI assessment.Override systemd-boot services to enable RW on /efi partition'
+2026-09-15T15:34:34Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -e "/run/cos/uki_boot_mode" ]: exit status 1)' stage name: Default config.Override systemd-tpm2-setup/systemd-pcrproduct with temporary RW under /efi
+2026-09-15T15:34:34Z DBG Reading '/system/oem/50_recovery.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Start recovery on tty1.Starts kairos-recovery for openRC based systems'
+2026-09-15T15:34:34Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run grep -q "kairos.remote_recovery_mode" /proc/cmdline: exit status 1)' stage name: Start recovery on tty1.Starts kairos-recovery for openRC based systems
+2026-09-15T15:34:34Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -e "/run/cos/uki_boot_mode" ]: exit status 1)' stage name: Enable EFI assessment.Override systemd-boot services to enable RW on /efi partition
+2026-09-15T15:34:34Z DBG Reading '/system/oem/08_efi_assessment.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Enable EFI assessment.Enable boot assessment'
+2026-09-15T15:34:34Z DBG Reading '/system/oem/09_systemd_services.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Default config.Enable systemd services'
+2026-09-15T15:34:34Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:34Z INF Processing stage step 'Default config.Enable systemd services'. ( commands: 4, files: 0, ... )
+2026-09-15T15:34:34Z DBG Stage: schema.Stage{
+  Commands: []string{
+    "ln -sf /etc/systemd/system/cos-setup-reconcile.timer /etc/systemd/system/multi-user.target.wants/cos-setup-reconcile.timer",
+    "ln -sf /etc/systemd/system/cos-setup-fs.service /etc/systemd/system/sysinit.target.wants/cos-setup-fs.service",
+    "ln -sf /etc/systemd/system/cos-setup-boot.service /etc/systemd/system/multi-user.target.wants/cos-setup-boot.service",
+    "ln -sf /etc/systemd/system/cos-setup-network.service /etc/systemd/system/multi-user.target.wants/cos-setup-network.service",
+  },
+  Name: "Enable systemd services",
+  OnlyIfServiceManager: "systemd",
+2026-09-15T15:34:34Z DBG Empty command output
+2026-09-15T15:34:34Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -e "/run/cos/uki_boot_mode" ]: exit status 1)' stage name: Enable EFI assessment.Enable boot assessment
+2026-09-15T15:34:34Z DBG Reading '/system/oem/51_reset.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Start reset on tty1.Starts kairos-reset for systemd based systems'
+2026-09-15T15:34:34Z DBG Empty command output
+2026-09-15T15:34:34Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run (grep -q "kairos.reset" /proc/cmdline || [ -f /run/cos/autoreset_mode ])
+: exit status 1)' stage name: Start reset on tty1.Starts kairos-reset for systemd based systems
+2026-09-15T15:34:34Z DBG Empty command output
+2026-09-15T15:34:34Z DBG Empty command output
+2026-09-15T15:34:34Z INF Running layout plugin
+2026-09-15T15:34:34Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:34Z DBG Reading '/system/oem/51_reset.yaml'
+2026-09-15T15:34:34Z DBG Reading '/system/oem/10_accounting.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Default user, permissions and serial login.Setup groups.0'
+2026-09-15T15:34:34Z INF Processing stage step 'Default user, permissions and serial login.Setup groups.0'. ( commands: 0, files: 0, ... )
+2026-09-15T15:34:34Z DBG Stage: schema.Stage{
+  EnsureEntities: []schema.YipEntity{
+    schema.YipEntity{
+      Entity: "kind: \"group\"\ngroup_name: \"admin\"\npassword: \"x\"\ngid: 900\n",
+    },
+  },
+  Name: "Setup groups",
+2026-09-15T15:34:34Z DBG Executing stage 'Start reset on tty1.Starts kairos-reset for openRC-based systems'
+2026-09-15T15:34:34Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run grep -q "kairos.reset" /proc/cmdline: exit status 1)' stage name: Start reset on tty1.Starts kairos-reset for openRC-based systems
+2026-09-15T15:34:34Z INF Running layout plugin
+2026-09-15T15:34:34Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:34Z DBG Reading '/system/oem/52_installer.yaml'
+2026-09-15T15:34:34Z DBG Reading '/system/oem/10_accounting.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Default user, permissions and serial login.Setup users.1'
+2026-09-15T15:34:34Z INF Processing stage step 'Default user, permissions and serial login.Setup users.1'. ( commands: 0, files: 0, ... )
+2026-09-15T15:34:34Z DBG Stage: schema.Stage{
+  Name: "Setup users",
+  Users: map[string]schema.User{
+    "kairos": schema.User{
+      PasswordHash: "!",
+      Homedir: "/home/kairos",
+      Groups: []string{
+        "admin",
+      },
+      Shell: "/bin/bash",
+    },
+  },
+2026-09-15T15:34:34Z INF Running layout plugin
+2026-09-15T15:34:34Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:34Z DBG Executing stage 'Start installer on tty1..0'
+2026-09-15T15:34:34Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run (grep -q "install-mode" /proc/cmdline || grep -q "nodepair.enable" /proc/cmdline ) && \
+([ -f /run/cos/live_mode ] || [ -f /run/cos/uki_install_mode ])
+: exit status 1)' stage name: Start installer on tty1..0
+2026-09-15T15:34:34Z DBG Reading '/system/oem/10_accounting.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Default user, permissions and serial login.Set user password if running in live or uki.2'
+2026-09-15T15:34:34Z DBG Reading '/system/oem/52_installer.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Start installer on tty1..1'
+2026-09-15T15:34:34Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -e /run/cos/live_mode ] || [ -e /run/cos/uki_install_mode ]: exit status 1)' stage name: Default user, permissions and serial login.Set user password if running in live or uki.2
+2026-09-15T15:34:34Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run (grep -q "install-mode" /proc/cmdline || grep -q "nodepair.enable" /proc/cmdline ) && \
+([ -f /run/cos/live_mode ] || [ -f /run/cos/uki_install_mode ])
+: exit status 1)' stage name: Start installer on tty1..1
+2026-09-15T15:34:34Z DBG Reading '/system/oem/52_installer.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Start installer on tty1..2'
+2026-09-15T15:34:34Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run (grep -q "interactive-install" /proc/cmdline || grep -q "install-mode-interactive" /proc/cmdline) && \
+([ -f /run/cos/live_mode ] || [ -f /run/cos/uki_install_mode ])
+: exit status 1)' stage name: Start installer on tty1..2
+2026-09-15T15:34:34Z DBG Reading '/system/oem/10_accounting.yaml'
+2026-09-15T15:34:34Z DBG Executing stage 'Default user, permissions and serial login.Setup sudo.3'
+2026-09-15T15:34:34Z INF Processing stage step 'Default user, permissions and serial login.Setup sudo.3'. ( commands: 1, files: 1, ... )
+2026-09-15T15:34:34Z DBG Stage: schema.Stage{
+  Commands: []string{
+    "passwd -l root",
+  },
+  Files: []schema.File{
+    schema.File{
+      Path: "/etc/sudoers",
+      Content: "Defaults always_set_home\nDefaults secure_path=\"/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin:/usr/local/sbin\"\nDefaults env_reset\nDefaults env_keep = \"LANG LC_ADDRESS LC_CTYPE LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE LC_ATIME LC_ALL LANGUAGE LINGUAS XDG_SESSION_COOKIE\"\nDefaults !insults\nroot ALL=(ALL) ALL\n%admin ALL=(ALL) NOPASSWD: ALL\n#includedir /etc/sudoers.d\n",
+    },
+  },
+  Name: "Setup sudo",
+2026-09-15T15:34:34Z DBG Creating file /etc/sudoers
+2026-09-15T15:34:35Z DBG Command output: passwd: password changed.
+2026-09-15T15:34:35Z INF Running layout plugin
+2026-09-15T15:34:35Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:35Z DBG Reading '/system/oem/10_accounting.yaml'
+2026-09-15T15:34:35Z DBG Executing stage 'Default user, permissions and serial login.Ensure runtime permission.4'
+2026-09-15T15:34:35Z DBG Reading '/system/oem/52_installer.yaml'
+2026-09-15T15:34:35Z DBG Executing stage 'Start installer on tty1..3'
+2026-09-15T15:34:35Z DBG If statement result 
+2026-09-15T15:34:35Z INF Processing stage step 'Default user, permissions and serial login.Ensure runtime permission.4'. ( commands: 2, files: 0, ... )
+2026-09-15T15:34:35Z DBG Stage: schema.Stage{
+  Commands: []string{
+    "chown -R root:admin /oem",
+    "chmod 770 /oem",
+  },
+  If: "[ -e \"/oem\" ]",
+  Name: "Ensure runtime permission",
+2026-09-15T15:34:35Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run (grep -q "interactive-install" /proc/cmdline || grep -q "install-mode-interactive" /proc/cmdline) && \
+([ -f /run/cos/live_mode ] || [ -f /run/cos/uki_install_mode ])
+: exit status 1)' stage name: Start installer on tty1..3
+2026-09-15T15:34:35Z DBG Empty command output
+2026-09-15T15:34:35Z DBG Empty command output
+2026-09-15T15:34:35Z INF Running layout plugin
+2026-09-15T15:34:35Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:35Z DBG Reading '/system/oem/99_sysext.yaml'
+2026-09-15T15:34:35Z DBG Executing stage 'sysext and confext configuration.systemd-sysext/confext uki config'
+2026-09-15T15:34:35Z DBG Reading '/system/oem/10_accounting.yaml'
+2026-09-15T15:34:35Z DBG Executing stage 'Default user, permissions and serial login.Ensure runtime permission.5'
+2026-09-15T15:34:35Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -e "/run/cos/uki_boot_mode" ] && [ ! -e "/run/cos/recovery_mode" ] && [ ! -e "/run/cos/autoreset_mode" ]: exit status 1)' stage name: sysext and confext configuration.systemd-sysext/confext uki config
+2026-09-15T15:34:35Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -e "/usr/local/cloud-config" ]: exit status 1)' stage name: Default user, permissions and serial login.Ensure runtime permission.5
+2026-09-15T15:34:35Z DBG Reading '/system/oem/99_sysext.yaml'
+2026-09-15T15:34:35Z DBG Executing stage 'sysext and confext configuration.systemd-sysext/confext config'
+2026-09-15T15:34:35Z DBG If statement result 
+2026-09-15T15:34:35Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:35Z INF Processing stage step 'sysext and confext configuration.systemd-sysext/confext config'. ( commands: 0, files: 2, ... )
+2026-09-15T15:34:35Z DBG Stage: schema.Stage{
+  Files: []schema.File{
+    schema.File{
+      Path: "/etc/systemd/system/systemd-sysext.service.d/kairos.conf",
+      Permissions: 420,
+      Content: "[Service]\n# Make it timeout early to avoid blocking boot if keys are not in there to unlock sysext\nTimeoutStartSec=10\n# override exec and reload to set the image policy\nExecStart=\nExecStart=systemd-sysext refresh --image-policy=\"root=verity+absent:usr=verity+absent\"\nExecReload=\nExecReload=systemd-sysext refresh --image-policy=\"root=verity+absent:usr=verity+absent\"\n# set the sysext hierarchies so we dont overwrite our mount at /usr/local\n# set them very specifically instead of a generic /usr/local as systemd <= 255 mounts the overlay as RO\n# and we dont want the full /usr/local to be RO as we store state in there\n# on systemd 256 we can control if they are mutable or not\nEnvironment=\"SYSTEMD_SYSEXT_HIERARCHIES=/usr/local/bin:/usr/local/sbin:/usr/local/include:/usr/local/lib:/usr/local/share:/usr/local/src:/usr/bin:/usr/share:/usr/lib:/usr/include:/usr/src:/usr/sbin\"\n[Unit]\n# Make it timeout early to avoid blocking boot if keys are not in there to unlock sysext\nJobRunningTimeoutSec=5\n",
+    },
+    schema.File{
+      Path: "/etc/systemd/system/systemd-confext.service.d/kairos.conf",
+      Permissions: 420,
+      Content: "[Service]\n# Make it timeout early to avoid blocking boot if keys are not in there to unlock sysext\nTimeoutStartSec=10\n# override exec and reload to set the image policy\nExecStart=\nExecStart=systemd-confext refresh --image-policy=\"root=verity+absent:usr=verity+absent\"\nExecReload=\nExecReload=systemd-confext refresh --image-policy=\"root=verity+absent:usr=verity+absent\"\n[Unit]\n# Make it timeout early to avoid blocking boot if keys are not in there to unlock sysext\nJobRunningTimeoutSec=5\n",
+    },
+  },
+  If: "[ ! -e \"/run/cos/uki_boot_mode\" ] && [ ! -e \"/run/cos/recovery_mode\" ] && [ ! -e \"/run/cos/autoreset_mode\" ]",
+  Name: "systemd-sysext/confext config",
+  OnlyIfServiceManager: "systemd",
+2026-09-15T15:34:35Z DBG Creating file /etc/systemd/system/systemd-sysext.service.d/kairos.conf
+2026-09-15T15:34:35Z DBG Creating parent directories
+2026-09-15T15:34:35Z DBG Adding execution bit to parent directory
+2026-09-15T15:34:35Z DBG Creating directory /etc/systemd/system/systemd-sysext.service.d
+2026-09-15T15:34:35Z DBG Creating file /etc/systemd/system/systemd-confext.service.d/kairos.conf
+2026-09-15T15:34:35Z DBG Creating parent directories
+2026-09-15T15:34:35Z DBG Adding execution bit to parent directory
+2026-09-15T15:34:35Z DBG Creating directory /etc/systemd/system/systemd-confext.service.d
+2026-09-15T15:34:35Z INF Running layout plugin
+2026-09-15T15:34:35Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:35Z DBG Reading '/system/oem/99_sysext.yaml'
+2026-09-15T15:34:35Z DBG Executing stage 'sysext and confext configuration.systemd-sysext set hierarchy system-wide'
+2026-09-15T15:34:35Z DBG If statement result 
+2026-09-15T15:34:35Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:35Z INF Processing stage step 'sysext and confext configuration.systemd-sysext set hierarchy system-wide'. ( commands: 0, files: 1, ... )
+2026-09-15T15:34:35Z DBG Stage: schema.Stage{
+  Files: []schema.File{
+    schema.File{
+      Path: "/etc/profile.d/systemd-sysext.sh",
+      Permissions: 420,
+      Content: "export SYSTEMD_SYSEXT_HIERARCHIES=\"/usr/local/bin:/usr/local/sbin:/usr/local/include:/usr/local/lib:/usr/local/share:/usr/local/src:/usr/bin:/usr/share:/usr/lib:/usr/include:/usr/src:/usr/sbin\"\n",
+    },
+  },
+  If: "[ ! -e \"/run/cos/recovery_mode\" ] && [ ! -e \"/run/cos/autoreset_mode\" ]",
+  Name: "systemd-sysext set hierarchy system-wide",
+  OnlyIfServiceManager: "systemd",
+2026-09-15T15:34:35Z DBG Creating file /etc/profile.d/systemd-sysext.sh
+2026-09-15T15:34:35Z INF Running layout plugin
+2026-09-15T15:34:35Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:35Z DBG Reading '/system/oem/99_sysext.yaml'
+2026-09-15T15:34:35Z DBG Executing stage 'sysext and confext configuration.systemd-sysext/confext initramfs settings'
+2026-09-15T15:34:35Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:35Z INF Processing stage step 'sysext and confext configuration.systemd-sysext/confext initramfs settings'. ( commands: 0, files: 0, ... )
+2026-09-15T15:34:35Z DBG Stage: schema.Stage{
+  Name: "systemd-sysext/confext initramfs settings",
+  Systemctl: schema.Systemctl{
+    Enable: []string{
+      "systemd-sysext",
+      "systemd-confext",
+    },
+  },
+  OnlyIfServiceManager: "systemd",
+2026-09-15T15:34:35Z INF Running layout plugin
+2026-09-15T15:34:35Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:35Z DBG Generating op for stage '/oem/95_userdata/userdata.yaml.0'
+2026-09-15T15:34:35Z DBG Generating op for stage '/oem/95_userdata/userdata.yaml.Set user and password'
+2026-09-15T15:34:35Z DBG Reading '/oem/95_userdata/userdata.yaml'
+2026-09-15T15:34:35Z DBG Executing stage '/oem/95_userdata/userdata.yaml.0'
+2026-09-15T15:34:35Z INF Processing stage step '/oem/95_userdata/userdata.yaml.0'. ( commands: 0, files: 0, ... )
+2026-09-15T15:34:35Z DBG Stage: schema.Stage{}
+2026-09-15T15:34:35Z INF Running layout plugin
+2026-09-15T15:34:35Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:35Z DBG Reading '/oem/95_userdata/userdata.yaml'
+2026-09-15T15:34:35Z DBG Executing stage '/oem/95_userdata/userdata.yaml.Set user and password'
+2026-09-15T15:34:35Z INF Processing stage step '/oem/95_userdata/userdata.yaml.Set user and password'. ( commands: 0, files: 0, ... )
+2026-09-15T15:34:35Z DBG Stage: schema.Stage{
+  Name: "Set user and password",
+  Users: map[string]schema.User{
+    "kairos": schema.User{
+      PasswordHash: "kairos",
+      Groups: []string{
+        "admin",
+      },
+    },
+  },
+2026-09-15T15:34:35Z INF Running layout plugin
+2026-09-15T15:34:35Z DBG Device field empty, skipping layout plugin
+2026-09-15T15:34:35Z INF Done executing stage 'initramfs'
+2026-09-15T15:34:35Z INF Running stage: initramfs.after
+2026-09-15T15:34:35Z DBG Generating op for stage 'Fonts fix for ubuntu QR code display.setup console fonts'
+2026-09-15T15:34:35Z DBG Generating op for stage 'Default user, permissions and serial login.Enable serial login for alpine'
+2026-09-15T15:34:35Z DBG Reading '/system/oem/10_accounting.yaml'
+2026-09-15T15:34:35Z DBG Executing stage 'Default user, permissions and serial login.Enable serial login for alpine'
+2026-09-15T15:34:35Z DBG Reading '/system/oem/03-setupcon.yaml'
+2026-09-15T15:34:35Z DBG Executing stage 'Fonts fix for ubuntu QR code display.setup console fonts'
+2026-09-15T15:34:35Z DBG Found systemd at /bin/systemctl
+2026-09-15T15:34:35Z WRN (conditional) Skip 'service manager doesn't match openrc' stage name: Default user, permissions and serial login.Enable serial login for alpine
+2026-09-15T15:34:35Z WRN (conditional) Skip 'OnlyIfOs regex (Ubuntu.*|Debian.*) doesn't match os name Hadron Linux' stage name: Fonts fix for ubuntu QR code display.setup console fonts
+2026-09-15T15:34:35Z INF Done executing stage 'initramfs.after'
+2026-09-15T15:34:35Z INF Running stage: initramfs.before
+2026-09-15T15:34:35Z INF Done executing stage 'initramfs.before'
+2026-09-15T15:34:35Z INF Running stage: initramfs
+2026-09-15T15:34:35Z INF Done executing stage 'initramfs'
+2026-09-15T15:34:35Z INF Running stage: initramfs.after
+2026-09-15T15:34:35Z INF Done executing stage 'initramfs.after'
+2026-09-15T15:34:35Z DBG Closing chroot activeMounts=["/sysroot/sys","/sysroot/dev","/sysroot/dev/pts","/sysroot/dev/shm","/sysroot/proc","/sysroot/tmp","/sysroot/run/rootfsbase","/sysroot/run/initramfs/live","/sysroot/run"]
+2026-09-15T15:34:35Z DBG Unmounting from chroot what=/sysroot/run
+2026-09-15T15:34:35Z DBG Unmounting from chroot what=/sysroot/run/initramfs/live
+2026-09-15T15:34:35Z DBG Unmounting from chroot what=/sysroot/run/rootfsbase
+2026-09-15T15:34:35Z DBG Unmounting from chroot what=/sysroot/tmp
+2026-09-15T15:34:35Z DBG Unmounting from chroot what=/sysroot/proc
+2026-09-15T15:34:35Z DBG Unmounting from chroot what=/sysroot/dev/shm
+2026-09-15T15:34:35Z DBG Unmounting from chroot what=/sysroot/dev/pts
+2026-09-15T15:34:35Z DBG Unmounting from chroot what=/sysroot/dev
+2026-09-15T15:34:35Z DBG Unmounting from chroot what=/sysroot/sys
+2026-09-15T15:34:35Z INF 1.
+ <init> (background: false) (weak: false) (run: false)
+ <create-sentinel> (background: false) (weak: false) (run: true)
+ <wait-for-sysroot> (background: false) (weak: false) (run: true)
+ <mount-tmpfs> (background: false) (weak: false) (run: true)
+ <ensure-partitions> (background: false) (weak: false) (run: true)
+ <mount-oem> (background: false) (weak: false) (run: true)
+ <upgrade-kcrypt> (background: false) (weak: false) (run: true)
+ <unlock-all> (background: false) (weak: false) (run: true)
+ <rootfs-hook> (background: false) (weak: false) (run: true)
+ <load-config> (background: false) (weak: false) (run: true)
+ <custom-mount> (background: false) (weak: false) (run: true)
+ <mount-base-overlay> (background: false) (weak: false) (run: true)
+ <overlay-mount> (background: false) (weak: false) (run: true)
+ <mount-bind> (background: false) (weak: false) (run: true)
+ <enable-sysext-confext> (background: false) (weak: false) (run: true)
+ <write-fstab> (background: false) (weak: false) (run: true)
+ <initramfs-hook> (background: false) (weak: false) (run: true)
+2026-09-15T15:34:35Z INF Boot timeline (slowest first):
+1. <initramfs-hook> 2.93s (ok)
+2. <mount-bind> 2.26s (ok)
+3. <wait-for-sysroot> 2.001s (ok)
+4. <mount-oem> 1.108s (ok)
+5. <custom-mount> 1.088s (ok)
+6. <mount-tmpfs> 1.001s (ok)
+7. <ensure-partitions> 992ms (ok)
+8. <rootfs-hook> 830ms (ok)
+9. <create-sentinel> 78ms (ok)
+10. <enable-sysext-confext> 23ms (ok)
+11. <upgrade-kcrypt> 15ms (ok)
+12. <mount-base-overlay> 6ms (ok)
+13. <overlay-mount> 5ms (ok)
+14. <write-fstab> 1ms (ok)
+15. <load-config> 1ms (ok)
+16. <unlock-all> 1ms (ok)
+2026-09-15T15:34:35Z INF Boot timeline step duration=2930.1916 rank=1 step=initramfs-hook
+2026-09-15T15:34:35Z INF Boot timeline step duration=2259.970955 rank=2 step=mount-bind
+2026-09-15T15:34:35Z INF Boot timeline step duration=2000.888812 rank=3 step=wait-for-sysroot
+2026-09-15T15:34:35Z INF Boot timeline step duration=1107.716668 rank=4 step=mount-oem
+2026-09-15T15:34:35Z INF Boot timeline step duration=1088.17507 rank=5 step=custom-mount
+2026-09-15T15:34:35Z INF Boot timeline step duration=1000.610548 rank=6 step=mount-tmpfs
+2026-09-15T15:34:35Z INF Boot timeline step duration=991.982847 rank=7 step=ensure-partitions
+2026-09-15T15:34:35Z INF Boot timeline step duration=830.082946 rank=8 step=rootfs-hook
+2026-09-15T15:34:35Z INF Boot timeline step duration=78.126528 rank=9 step=create-sentinel
+2026-09-15T15:34:35Z INF Boot timeline step duration=22.79767 rank=10 step=enable-sysext-confext
+2026-09-15T15:34:35Z INF Boot timeline step duration=14.971156 rank=11 step=upgrade-kcrypt
+2026-09-15T15:34:35Z INF Boot timeline step duration=5.632028 rank=12 step=mount-base-overlay
+2026-09-15T15:34:35Z INF Boot timeline step duration=5.121679 rank=13 step=overlay-mount
+2026-09-15T15:34:35Z INF Boot timeline step duration=1.174808 rank=14 step=write-fstab
+2026-09-15T15:34:35Z INF Boot timeline step duration=0.803891 rank=15 step=load-config
+2026-09-15T15:34:35Z INF Boot timeline step duration=0.571634 rank=16 step=unlock-all
+2026-09-15T15:34:35Z INF Wrote boot timeline trace path=/run/immucore/boot-timeline.json

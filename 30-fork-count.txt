@@ -1,0 +1,19 @@
+=== blkid --help fork count, same benign BusyBox shim, same cmdline, same ISO ===
+
+-- master (pre-fix): one --help per DiskFSType call --
+BLKIDSHIM argv=[/dev/vda1 -s TYPE -o value]
+BLKIDSHIM argv=[--help]
+BLKIDSHIM argv=[/dev/vda1 -s TYPE -o value]
+BLKIDSHIM argv=[--help]
+BLKIDSHIM argv=[/dev/vda2 -s TYPE -o value]
+BLKIDSHIM argv=[--help]
+
+total forks: 6   --help forks: 3
+
+-- PR: one --help per process --
+BLKIDSHIM argv=[/dev/vda1 -s TYPE -o value]
+BLKIDSHIM argv=[--help]
+BLKIDSHIM argv=[/dev/vda1 -s TYPE -o value]
+BLKIDSHIM argv=[/dev/vda2 -s TYPE -o value]
+
+total forks: 4   --help forks: 1

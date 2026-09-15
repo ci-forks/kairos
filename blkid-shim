@@ -1,0 +1,36 @@
+#!/bin/sh
+# QA shim for kairos-io/kairos#4462.
+#
+# Emulates BusyBox blkid for exactly the two argument shapes immucore's
+# DiskFSType uses, and delegates everything else to the real util-linux
+# blkid so the rest of the initramfs is unaffected.
+#
+#   blkid --help                -> BusyBox banner, so DiskFSType takes the
+#                                  BusyBox branch
+#   blkid <dev> -s TYPE -o value-> a tagless "<dev>:" line, which is what
+#                                  BusyBox prints for a device it found no
+#                                  tags on. That is the input that panics
+#                                  the pre-#4462 guard.
+#
+# Every invocation is logged to /dev/kmsg so the serial console records how
+# many times immucore forked blkid.
+REAL=/usr/bin/blkid.real
+
+echo "BLKIDSHIM argv=[$*]" > /dev/kmsg 2>/dev/null
+
+case "$1" in
+  --help|-h)
+    echo "BusyBox v1.36.1 (2024-01-01 00:00:00 UTC) multi-call binary."
+    echo ""
+    echo "Usage: blkid [BLOCKDEV]..."
+    exit 0
+    ;;
+esac
+
+# immucore always asks in this exact shape: "<dev> -s TYPE -o value"
+if [ "$#" -eq 5 ] && [ "$2" = "-s" ] && [ "$3" = "TYPE" ] && [ "$4" = "-o" ] && [ "$5" = "value" ]; then
+    echo "$1:"
+    exit 0
+fi
+
+exec "$REAL" "$@"
