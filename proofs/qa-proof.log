@@ -1,0 +1,262 @@
+================================================================================
+QA PROOF -- kairos-io/kairos PR #4662
+"fix(state): name the architecture on the images sysinfo cannot read"
+PR head  : a902edec0548c68a0764fedfefc54c709a7a87fd
+PR base  : 96ef1c97d (fix(immucore): fix a DiskFSType panic...)
+Fixes    : kairos-io/kairos#4661
+QA host  : Linux 6.8.0-139-generic x86_64, go1.26.8, qemu-kvm
+QA by    : ci-robbot (autonomous QA bot)
+================================================================================
+
+PART 1 -- END TO END ON A REAL BOOTED KAIROS SYSTEM
+--------------------------------------------------------------------------------
+ISO under test: kairos-hadron-v0.5.1-standard-amd64-generic-v4.3.0-85-g96ef1c97d
+                -k3sv1.36.4+k3s1.iso
+That ISO is built from 96ef1c97d, i.e. the agent shipped inside it IS the
+pre-fix ("BASE") build. Hadron is musl, so it is exactly the case #4661
+describes. Booted live in QEMU/KVM:
+
+  qemu-system-x86_64 -accel kvm -cpu host -m 4G -smp 4 \
+    -kernel <iso:/boot/kernel> -initrd <iso:/boot/initrd> \
+    -append 'cdroot root=live:CDLABEL=COS_LIVE rd.live.dir=/ \
+             rd.live.squashimg=rootfs.squashfs net.ifnames=1 \
+             console=tty1 console=ttyS0 rd.cos.disable vga=795 nomodeset \
+             install-mode selinux=0 rd.live.overlay.overlayfs' \
+    -drive if=ide,media=cdrom,file=<iso>,readonly=on \
+    -netdev user,id=n0 -device virtio-net-pci,netdev=n0 ...
+
+The PR binary (built from a902edec0, sha256
+3033937d95355c8d6becd41a4f901d53b0920a048571e82c0a7aef6c657e8db4) was curled
+into the running guest and dropped in as /tmp/prbin/kairos-agent, so both
+builds ran against the SAME rootfs, kernel and machine.
+
+##### ENVIRONMENT #####
+### machine
+KAIROS_ARCH="amd64"
+KAIROS_FLAVOR="hadron"
+KAIROS_NAME="kairos-standard-hadron-v0.5.1"
+KAIROS_VARIANT="standard"
+KAIROS_VERSION="v4.3.0-85-g96ef1c97d"
+uname -m: x86_64
+
+### libc loader in this rootfs (what sysinfo probes for)
+absent  /lib64/ld-linux-x86-64.so.2
+absent  /lib/ld-linux.so.2
+PRESENT /lib/ld-musl-x86_64.so.1
+
+### agent binaries under test
+base (shipped in ISO): kairos v4.3.0-85-g96ef1c97d
+pr   (PR 4662 build) : kairos v4.3.0-86-ga902edec0
+
+##### 1. kairos-agent state get system.os.architecture #####
+### BASE 96ef1c97d
+result=[<nil>]
+
+### PR   a902edec0
+result=[amd64]
+
+##### 2. kairos-agent state -- the os block #####
+### BASE 96ef1c97d
+system:
+    meta:
+        version: 1.1.3
+        timestamp: 2026-09-17T22:12:45.719294039Z
+    node:
+        hostname: kairos-9cb3
+        machineid: 9cb3a6c42ab14673ba04d1354ea276cb
+        hypervisor: kvm
+        timezone: ""
+    os:
+        name: Hadron Linux
+        vendor: hadron
+        version: v0.5.1
+        release: ""
+        architecture: ""
+    kernel:
+
+### PR   a902edec0
+system:
+    meta:
+        version: 1.1.3
+        timestamp: 2026-09-17T22:12:45.903273785Z
+    node:
+        hostname: kairos-9cb3
+        machineid: 9cb3a6c42ab14673ba04d1354ea276cb
+        hypervisor: kvm
+        timezone: ""
+    os:
+        name: Hadron Linux
+        vendor: hadron
+        version: v0.5.1
+        release: ""
+        architecture: amd64
+    kernel:
+
+##### 3. kairos-agent render-template (the user-facing template path) #####
+### template file
+arch=[{{.State.system.os.architecture}}]
+
+### BASE 96ef1c97d
+arch=[]
+
+### PR   a902edec0
+arch=[amd64]
+
+##### 4. regression: nothing else in state changed #####
+### byte diff of the whole state output, architecture line excluded
+sh: line 1: cmp: command not found
+DIFFERS
+
+### the only line that changed
+base: 62:        architecture: ""
+base: 66:        architecture: x86_64
+pr:   62:        architecture: amd64
+pr:   66:        architecture: x86_64
+
+### other state keys still resolve under the PR build
+kairos.flavor                = [hadron]
+kairos.version               = [v4.3.0-85-g96ef1c97d]
+system.os.name               = [Hadron Linux]
+system.os.vendor             = [hadron]
+system.kernel.release        = [7.1.3-hadron]
+system.node.hostname         = [kairos-9cb3]
+
+
+PART 1b -- FULL `kairos-agent state` DIFF, BASE vs PR, SAME BOOT
+--------------------------------------------------------------------------------
+--- state-base.yaml	2026-09-17 22:12:58.988633250 +0000
++++ state-pr.yaml	2026-09-17 22:12:59.163640059 +0000
+@@ -48,7 +48,7 @@
+ system:
+     meta:
+         version: 1.1.3
+-        timestamp: 2026-09-17T22:12:58.966303768Z
++        timestamp: 2026-09-17T22:12:59.142033306Z
+     node:
+         hostname: kairos-9cb3
+         machineid: 9cb3a6c42ab14673ba04d1354ea276cb
+@@ -59,7 +59,7 @@
+         vendor: hadron
+         version: v0.5.1
+         release: ""
+-        architecture: ""
++        architecture: amd64
+     kernel:
+         release: 7.1.3-hadron
+         version: '#1 SMP PREEMPT_DYNAMIC Tue Jul  7 08:02:27 UTC 2026'
+(the timestamp line differs between any two runs of the same binary;
+ 'architecture' is the only semantic change across all 120 lines.
+ system.cpu.architecture stays x86_64 -- that is a different field.)
+
+PART 2 -- ARCH / LIBC MATRIX
+--------------------------------------------------------------------------------
+Probe: a tiny main() calling sdk/state.NewRuntime() and printing
+Runtime.System.OS.Architecture, cross-compiled from both revisions and run
+under docker + qemu binfmt. 'sysinfo probe' shows whether either of the two
+glibc loader paths zcalusic/sysinfo stats exists in that rootfs.
+
+--- alpine  amd64   (musl, x86-64)   <- Hadron's libc
+    uname -m: x86_64
+    sysinfo probe absent  /lib64/ld-linux-x86-64.so.2
+    sysinfo probe absent  /lib/ld-linux.so.2
+    BASE 96ef1c97d: GOARCH=amd64 system.os.architecture=[]
+    PR   a902edec0: GOARCH=amd64 system.os.architecture=[amd64]
+
+--- alpine  arm64   (musl)
+    uname -m: aarch64
+    sysinfo probe absent  /lib64/ld-linux-x86-64.so.2
+    sysinfo probe absent  /lib/ld-linux.so.2
+    BASE 96ef1c97d: GOARCH=arm64 system.os.architecture=[]
+    PR   a902edec0: GOARCH=arm64 system.os.architecture=[arm64]
+
+--- alpine  riscv64 (musl)
+    uname -m: riscv64
+    sysinfo probe absent  /lib64/ld-linux-x86-64.so.2
+    sysinfo probe absent  /lib/ld-linux.so.2
+    BASE 96ef1c97d: GOARCH=riscv64 system.os.architecture=[]
+    PR   a902edec0: GOARCH=riscv64 system.os.architecture=[riscv64]
+
+--- alpine  386     (musl, 32-bit x86) <- exercises the i386 spelling branch
+    uname -m: i686
+    sysinfo probe absent  /lib64/ld-linux-x86-64.so.2
+    sysinfo probe absent  /lib/ld-linux.so.2
+    BASE 96ef1c97d: GOARCH=386 system.os.architecture=[]
+    PR   a902edec0: GOARCH=386 system.os.architecture=[i386]
+
+--- debian  arm64   (glibc)          <- e.g. jetson-orin images
+    uname -m: aarch64
+    sysinfo probe absent  /lib64/ld-linux-x86-64.so.2
+    sysinfo probe absent  /lib/ld-linux.so.2
+    BASE 96ef1c97d: GOARCH=arm64 system.os.architecture=[]
+    PR   a902edec0: GOARCH=arm64 system.os.architecture=[arm64]
+
+--- debian  386     (glibc)          <- detection wins, fallback must NOT fire
+    uname -m: i686
+    sysinfo probe absent  /lib64/ld-linux-x86-64.so.2
+    sysinfo probe PRESENT /lib/ld-linux.so.2
+    BASE 96ef1c97d: GOARCH=386 system.os.architecture=[i386]
+    PR   a902edec0: GOARCH=386 system.os.architecture=[i386]
+
+--- debian  amd64   (glibc)          <- regression: unchanged
+    uname -m: x86_64
+    sysinfo probe PRESENT /lib64/ld-linux-x86-64.so.2
+    sysinfo probe absent  /lib/ld-linux.so.2
+    BASE 96ef1c97d: GOARCH=amd64 system.os.architecture=[amd64]
+    PR   a902edec0: GOARCH=amd64 system.os.architecture=[amd64]
+
+PART 3 -- TEST SUITES, AND WHERE THEY ARE VACUOUS
+--------------------------------------------------------------------------------
+--- the pre-fix render_template spec, run on musl (proves it was asserting the runner's libc, not the template)
+  [FAILED] Expected
+      <string>: 
+  to equal
+      <string>: amd64
+Summarizing 1 Failure:
+  [FAIL] RenderTemplate action test [It] renders the template with config and state
+FAIL! -- 228 Passed | 1 Failed | 0 Pending | 1 Skipped
+--- FAIL: TestActionSuite (3.92s)
+
+--- the same two suites, PR build, on musl
+  agent/pkg/action: SUCCESS! -- 229 Passed | 0 Failed | 0 Pending | 1 Skipped
+  sdk/state:        SUCCESS! -- 47 Passed | 0 Failed | 0 Pending | 0 Skipped
+
+--- PR build on glibc amd64 (what CI runs)
+  agent/pkg/action: SUCCESS! -- 229 Passed | 0 Failed | 0 Pending | 1 Skipped
+  sdk/state:        SUCCESS! -- 47 Passed | 0 Failed | 0 Pending | 0 Skipped
+
+PART 4 -- MUTATION CHECK OF THE NEW SPECS (each mutation reverted after)
+--------------------------------------------------------------------------------
+mutation: resolveArch called but its result discarded (i.e. never wired into detectSystem)
+  applied. failing spec(s):
+
+mutation: never fall back (resolveArch returns detected unconditionally)
+  applied. failing spec(s):
+      [FAIL] OS architecture resolveArch [It] falls back to GOARCH on the arches sysinfo cannot detect
+      [FAIL] OS architecture resolveArch [It] spells 32 bit x86 the way sysinfo spells it
+      [FAIL] OS architecture detectSystem [It] always names an architecture
+    (suite failed)
+
+mutation: always fall back (detection ignored)
+  applied. failing spec(s):
+      [FAIL] OS architecture resolveArch [It] keeps what sysinfo detected
+    (suite failed)
+
+mutation: drop the 386 -> i386 spelling
+  applied. failing spec(s):
+      [FAIL] OS architecture resolveArch [It] spells 32 bit x86 the way sysinfo spells it
+    (suite failed)
+
+Mutation 1 is caught only on a musl / non-x86 host, not on the glibc amd64 host
+above. Verified explicitly with the mutated test binary:
+
+  on musl (alpine amd64):
+      [FAIL] OS architecture detectSystem [It] always names an architecture
+    FAIL! -- 46 Passed | 1 Failed | 0 Pending | 0 Skipped
+      [FAIL] RenderTemplate action test [It] renders the template with config and state
+    FAIL! -- 228 Passed | 1 Failed | 0 Pending | 1 Skipped
+
+  on glibc amd64 (what CI's ubuntu-latest runner is):
+    SUCCESS! -- 47 Passed | 0 Failed | 0 Pending | 0 Skipped
+
+This matches the 'Honest limit' paragraph in the PR description: it is a
+property of the environment CI runs in, not a defect in the fix.
