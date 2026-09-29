@@ -1,0 +1,14 @@
+< https://github.com/ ; echo curl rc=$?; echo @@@END
+]3008;start=a803c537-4b6e-469c-b633-7ad8b5ed911c;type=command;machineid=ac75a0f7215d48e1aa8aca5acbc9a10c;user=root;hostname=kairos-ac75;bootid=8069a721-293c-4cd9-ac0b-6009863174d7;pid=1412;cwd=/root\@@@BEGIN
+Sep 29 22:22:17.843889 kairos-ac75 systemd[1]: Starting kairos interactive-installer...
+Sep 29 22:22:17.869080 kairos-ac75 (kill)[1357]: kairos-interactive.service: Unable to locate executable '/usr/bin/kill': No such file or directory
+Sep 29 22:22:18.412089 kairos-ac75 kairos-agent[1358]: Kairos Agent
+Sep 29 22:22:18.422322 kairos-ac75 kairos-agent[1358]: Boot Mode
+Sep 29 22:22:18.423082 kairos-ac75 kairos-agent[1358]: Boot in uki mode
+ 1383 root     1248m S    /system/installer/kairos-installer
+Tue Sep 29 22:23:21 UTC 2026
+2e67a0c95c638644b4c84646ea53ff8d326933ad5bbf690e8c51d462fb28de08  /system/installer/kairos-installer
+curl catalog host http=000
+curl rc=6
+@@@END
+]3008;end=a803c537-4b6e-469c-b633-7ad8b5ed911c;exit=success\]3008;start=ec4b8f2d-7622-455a-97e5-435c314a104e;type=shell;machineid=ac75a0f7215d48e1aa8aca5acbc9a10c;user=root;hostname=kairos-ac75;bootid=8069a721-293c-4cd9-ac0b-6009863174d7;pid=1412;cwd=/root\[root@kairos-ac75 ~]# 

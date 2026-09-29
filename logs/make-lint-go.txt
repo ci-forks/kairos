@@ -1,0 +1,12 @@
+level=info msg="golangci-lint has version 2.13.2 built with go1.27.0 from 27774aaf on 2026-08-27T23:01:12Z"
+level=info msg="[config_reader] Config search paths: [./ /work / /root]"
+level=info msg="[config_reader] Used config file .golangci.yml"
+level=info msg="[config_reader] Module name \"github.com/kairos-io/kairos/v4\""
+level=info msg="[goenv] Read go env for 2.254445ms: map[string]string{\"GOCACHE\":\"/root/.cache/go-build\", \"GOROOT\":\"/usr/local/go\"}"
+level=info msg="[lintersdb] Active 15 linters: [dupl errcheck ginkgolinter gocheckcompilerdirectives goconst gocyclo gofmt goimports govet ineffassign misspell revive staticcheck unused zerologlint]"
+level=info msg="Memory: 6002 samples, avg is 38.4MB, max is 39.2MB"
+level=info msg="Execution took 10m0.001179835s"
+level=info msg="[loader] Go packages loading at mode 8767 (deps|exports_file|imports|name|files|types_sizes|compiled_files) took 10m0.001667717s"
+level=error msg="Running error: context loading failed: failed to load packages: failed to load packages: failed to load with go/packages: context deadline exceeded"
+level=error msg="Timeout exceeded: try increasing it by passing --timeout option"
+make: *** [Makefile:124: lint-go] Error 4

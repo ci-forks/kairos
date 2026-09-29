@@ -1,0 +1,12 @@
+rail: STEPS | 01 | Disk | 02 | User and password | 03 | SSH keys | 04 | Hostname | 05 | Timezone and keyboard | 06 | System extensions | 07 | p2p settings | 08 | When the install finishes | 09 | Review and install
+disk labels: /dev/vda, /dev/vdb
+shot 01-disk
+shot 02-user
+shot 03-ssh-keys
+shot 04-hostname
+shot 05-locale
+after locale: System extensions | errors: undefined
+shot 06-extensions
+FAILED {"exceptionId":1,"text":"Uncaught","lineNumber":0,"columnNumber":69,"scriptId":"23","exception":{"type":"object","subtype":"error","className":"SyntaxError","description":"SyntaxError: Invalid regular expression: missing /","objectId":"6721871341853111683.2.2"}}
+shot zz-failure-1790716045971
+CONSOLE []

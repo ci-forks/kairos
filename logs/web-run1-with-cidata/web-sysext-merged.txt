@@ -1,0 +1,35 @@
++ sudo systemd-sysext unmerge
+Failed to rename process, ignoring: Operation not permitted
+Unmerged '/usr'.
++ sudo systemctl restart systemd-sysext
++ tail -5
++ sudo journalctl -b -u systemd-sysext --no-pager
+Sep 29 21:10:43 wizard-web systemd[1]: Starting Merge System Extension Images into /usr/ and /opt/...
+Sep 29 21:10:43 wizard-web (sd-merge)[1717]: Using extensions 'test.sysext.raw'.
+Sep 29 21:10:43 wizard-web (sd-merge)[1717]: Merged extensions into '/usr/local/bin'.
+Sep 29 21:10:43 wizard-web (sd-merge)[1717]: Merged extensions into '/usr/lib'.
+Sep 29 21:10:43 wizard-web systemd[1]: Finished Merge System Extension Images into /usr/ and /opt/.
++ H=/usr/local/bin:/usr/local/sbin:/usr/local/include:/usr/local/lib:/usr/local/share:/usr/local/src:/usr/bin:/usr/share:/usr/lib:/usr/include:/usr/src:/usr/sbin
++ sudo SYSTEMD_SYSEXT_HIERARCHIES=/usr/local/bin:/usr/local/sbin:/usr/local/include:/usr/local/lib:/usr/local/share:/usr/local/src:/usr/bin:/usr/share:/usr/lib:/usr/include:/usr/src:/usr/sbin systemd-sysext status
+HIERARCHY      EXTENSIONS SINCE
+/usr/bin       none       -
+/usr/lib       test       Tue 2026-09-29 21:10:43 UTC
+/usr/local/bin test       Tue 2026-09-29 21:10:43 UTC
+/usr/local/lib none       -
+/usr/sbin      none       -
+/usr/share     none       -
+/usr/src       none       -
++ + head
+ls -la /usr/local/bin/
+total 12
+drwxr-xr-x 1 root   root     60 Sep 29 21:10 .
+drwxr-xr-x 9 root   root   4096 Sep 29 21:09 ..
+drwxr-xr-x 2 root   root    120 Sep 29 21:10 .systemd-sysext
+-rwxr-xr-x 1 root   root    311 Sep 29 21:09 align-selinux-config
+-rwxr-xr-x 1 kairos kairos   40 Sep 29 20:53 wizard-test-ext
++ echo PATH=/bin:/usr/bin:/sbin:/usr/sbin
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
++ /usr/local/bin/wizard-test-ext
+wizard-test-extension-ok
++ cat /usr/lib/extension-release.d/extension-release.test
+ID=_any

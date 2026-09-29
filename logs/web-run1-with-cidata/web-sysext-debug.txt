@@ -1,0 +1,126 @@
+Sep 29 21:09:51 localhost systemd[1]: Merge System Extension Images into /usr/ and /opt/ of the initrd skipped, no trigger condition checks were met.
+Sep 29 21:09:52 localhost immucore[604]:  <enable-sysext-confext> (background: false) (weak: false) (run: false)
+                                                 <enable-sysext-confext> (background: false) (weak: false) (run: false)
+Sep 29 21:09:52 localhost systemd[1]: Merge System Extension Images into /sysroot/usr/ and /sysroot/opt/ skipped, no trigger condition checks were met.
+Sep 29 21:09:53 localhost kernel: ISO 9660 Extensions: Microsoft Joliet Level 3
+Sep 29 21:09:53 localhost kernel: ISO 9660 Extensions: RRIP_1991A
+Sep 29 21:09:53 localhost kernel: ISO 9660 Extensions: RRIP_1991A
+Sep 29 21:09:53 localhost kernel: ISO 9660 Extensions: RRIP_1991A
+Sep 29 21:09:53 localhost kernel: ISO 9660 Extensions: Microsoft Joliet Level 3
+Sep 29 21:09:53 localhost kernel: ISO 9660 Extensions: RRIP_1991A
+Sep 29 21:09:55 kairos-e95c immucore[604]: 2026-09-29T21:09:55Z INF Processing stage step 'Profile extensions.Set KUBECONFIG to access k9s and kubectl'. ( commands: 0, files: 1, ... )
+Sep 29 21:09:55 wizard-web kairos-immucore[604]: Processing stage step 'Profile extensions.Set KUBECONFIG to access k9s and kubectl'. ( commands: 0, files: 1, ... )
+Sep 29 21:09:56 wizard-web immucore[604]: 2026-09-29T21:09:55Z WRN (conditional) Skip 'Skipping stage (if statement error: failed to run [ -e "/run/cos/uki_boot_mode" ] && [ ! -e "/run/cos/recovery_mode" ] && [ ! -e "/run/cos/autoreset_mode" ]: exit status 1)' stage name: sysext and confext configuration.systemd-sysext/confext uki config
+Sep 29 21:09:56 wizard-web immucore[604]: 2026-09-29T21:09:55Z INF Processing stage step 'sysext and confext configuration.systemd-sysext/confext config'. ( commands: 0, files: 2, ... )
+Sep 29 21:09:56 wizard-web immucore[604]: 2026-09-29T21:09:55Z INF Processing stage step 'sysext and confext configuration.systemd-sysext set hierarchy system-wide'. ( commands: 0, files: 1, ... )
+Sep 29 21:09:56 wizard-web immucore[604]: 2026-09-29T21:09:55Z INF Processing stage step 'sysext and confext configuration.systemd-sysext/confext initramfs settings'. ( commands: 0, files: 0, ... )
+Sep 29 21:09:56 wizard-web immucore[604]:  <enable-sysext-confext> (background: false) (weak: false) (run: true)
+Sep 29 21:09:56 wizard-web immucore[604]: 10. <enable-sysext-confext> 25ms (ok)
+Sep 29 21:09:56 wizard-web immucore[604]: 2026-09-29T21:09:55Z INF Boot timeline step duration=24.672115 rank=10 step=enable-sysext-confext
+Sep 29 21:09:55 wizard-web kairos-immucore[604]: (conditional) Skip 'Skipping stage (if statement error: failed to run [ -e "/run/cos/uki_boot_mode" ] && [ ! -e "/run/cos/recovery_mode" ] && [ ! -e "/run/cos/autoreset_mode" ]: exit status 1)' stage name: sysext and confext configuration.systemd-sysext/confext uki config
+Sep 29 21:09:55 wizard-web kairos-immucore[604]: Processing stage step 'sysext and confext configuration.systemd-sysext/confext config'. ( commands: 0, files: 2, ... )
+Sep 29 21:09:55 wizard-web kairos-immucore[604]: Processing stage step 'sysext and confext configuration.systemd-sysext set hierarchy system-wide'. ( commands: 0, files: 1, ... )
+Sep 29 21:09:55 wizard-web kairos-immucore[604]: Processing stage step 'sysext and confext configuration.systemd-sysext/confext initramfs settings'. ( commands: 0, files: 0, ... )
+                                                  <enable-sysext-confext> (background: false) (weak: false) (run: true)
+                                                 10. <enable-sysext-confext> 25ms (ok)
+Sep 29 21:09:58 wizard-web systemd[1]: Listening on System Extension Image Management.
+Sep 29 21:09:58 wizard-web systemd[1]: Starting Merge System Extension Images into /usr/ and /opt/...
+Sep 29 21:09:58 wizard-web kairos-agent[1211]: Processing stage step 'sysext and confext configuration.Default sysext/confext extensions dirs'. ( commands: 0, files: 0, ... )
+Sep 29 21:09:58 wizard-web kairos-agent[1211]: 2026-09-29T21:09:58Z INF Processing stage step 'sysext and confext configuration.Default sysext/confext extensions dirs'. ( commands: 0, files: 0, ... )
+Sep 29 21:09:58 wizard-web kairos-agent[1211]: mkdir /usr/lib/extensions: read-only file system
+/oem:
+total 21
+drwxrwx---  4 root admin  1024 Sep 29 21:09 .
+drwxr-xr-x 18 root root   4096 Sep 29 21:09 ..
+-rw-r-----  1 root admin  2369 Sep 29 21:09 90_custom.yaml
+drwxr--r--  2 root admin  1024 Sep 29 21:09 95_userdata
+drwx------  2 root admin 12288 Sep 29 21:09 lost+found
+
+/usr/local/cloud-config:
+total 8
+drwxrwx--- 2 root admin 4096 Sep 29 21:09 .
+drwxr-xr-x 9 root root  4096 Sep 29 21:09 ..
+● systemd-sysext.service - Merge System Extension Images into /usr/ and /opt/
+     Loaded: loaded (/usr/lib/systemd/system/systemd-sysext.service; enabled; preset: enabled)
+    Drop-In: /etc/systemd/system/systemd-sysext.service.d
+             └─kairos.conf
+     Active: active (exited) since Tue 2026-09-29 21:09:58 UTC; 28s ago
+ Invocation: 4b33ee66a1074a8e9a3942ca0c51077d
+       Docs: man:systemd-sysext.service(8)
+   Main PID: 1217 (code=exited, status=0/SUCCESS)
+   Mem peak: 2.6M
+        CPU: 24ms
+
+Warning: some journal files were not opened due to insufficient permissions.
+ExecStart=systemd-sysext refresh
+ExecReload=systemd-sysext refresh
+ExecStop=systemd-sysext unmerge
+Failed to chase '/etc/systemd/system/systemd-sysext.service.d/kairos.conf': Permission denied
+[Service]
+# Make it timeout early to avoid blocking boot if keys are not in there to unlock sysext
+TimeoutStartSec=10
+# override exec and reload to set the image policy
+ExecStart=
+ExecStart=systemd-sysext refresh --image-policy="root=verity+absent:usr=verity+absent"
+ExecReload=
+ExecReload=systemd-sysext refresh --image-policy="root=verity+absent:usr=verity+absent"
+# set the sysext hierarchies so we dont overwrite our mount at /usr/local
+# set them very specifically instead of a generic /usr/local as systemd <= 255 mounts the overlay as RO
+# and we dont want the full /usr/local to be RO as we store state in there
+# on systemd 256 we can control if they are mutable or not
+Environment="SYSTEMD_SYSEXT_HIERARCHIES=/usr/local/bin:/usr/local/sbin:/usr/local/include:/usr/local/lib:/usr/local/share:/usr/local/src:/usr/bin:/usr/share:/usr/lib:/usr/include:/usr/src:/usr/sbin"
+[Unit]
+# Make it timeout early to avoid blocking boot if keys are not in there to unlock sysext
+JobRunningTimeoutSec=5
+Sep 29 21:09:58 wizard-web systemd[1]: Starting Merge System Extension Images into /usr/ and /opt/...
+Sep 29 21:09:58 wizard-web (sd-merge)[1260]: Using extensions 'test.sysext.raw'.
+Sep 29 21:09:58 wizard-web (sd-merge)[1260]: Merged extensions into '/usr/local/bin'.
+Sep 29 21:09:58 wizard-web (sd-merge)[1260]: Merged extensions into '/usr/lib'.
+Sep 29 21:09:58 wizard-web systemd[1]: Finished Merge System Extension Images into /usr/ and /opt/.
+total 0
+drwxr-xr-x  2 root root  60 Sep 29 21:09 .
+drwxr-xr-x 25 root root 600 Sep 29 21:09 ..
+lrwxrwxrwx  1 root root  49 Sep 29 21:09 test.sysext.raw -> /var/lib/kairos/extensions/active/test.sysext.raw
+ File Name: test.sysext.raw
+      Size: 21M
+ Sec. Size: 512
+     Arch.: x86-64
+Image UUID: 05563a0b-ebff-4f9d-8f85-519c67e36803
+Image Name: test
+
+ sysext R.: ID=_any
+
+    Use As: ✗ bootable system for UEFI
+            ✗ bootable system for container
+            ✗ portable service
+            ✗ initrd
+            ✓ sysext for system
+            ✓ sysext for portable service
+            ✗ sysext for initrd
+            ✗ confext for system
+            ✗ confext for portable service
+            ✗ confext for initrd
+
+		}
+	}
+}
+Using extensions 'test.sysext.raw'.
+Hierarchy '/usr' is not a mount point, skipping.
+Unmounting '/usr/lib'...
+Unmounting '/usr/local'...
+Hierarchy '/opt' does not carry a .systemd-sysext/dev file, not a merged tree.
+Mutability for hierarchy '/usr' is disabled, not resolving mutable directory.
+No mutable directory found, so host hierarchy '/usr' will be used as lowerdir
+No mutable directory found for host hierarchy '/usr', there will be no upperdir
+Mounting sysext (overlay) on /run/systemd/sysext/overlay/usr (MS_RDONLY|MS_NODEV "lowerdir=/run/systemd/sysext/meta/usr:/run/systemd/sysext/extensions/test/usr:/usr")...
+Unmounting '/run/systemd/sysext/submounts/usr/lib'...
+Unmounting '/run/systemd/sysext/submounts/usr/local'...
+Hierarchy '/opt' in extension '/run/systemd/sysext/extensions/test' doesn't exist, not merging.
+Bind-mounting /run/systemd/sysext/overlay/usr on /usr (MS_BIND|MS_REC "")...
+Merged extensions into '/usr'.
+'(sd-merge)' succeeded.
+Checking for /usr/lib/extension-release.d/extension-release.test: No error information
+Hierarchy '/opt' does not carry a .systemd-sysext/dev file, not a merged tree.
+HIERARCHY EXTENSIONS SINCE
+/opt      none       -
+Failed to determine whether hierarchy '/usr' contains '.systemd-sysext/dev': Permission denied

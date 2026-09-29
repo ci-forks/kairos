@@ -1,0 +1,7 @@
+server: {"name": "kairos-installer", "version": "v1"} session: D2T4DFBWGNWLRENB52UCW6LEND
+- apply_prerequisites  annotations={"destructiveHint": true, "idempotentHint": false, "openWorldHint": false, "readOnlyHint": false}  required=['decisions']
+- collect_debug_bundle  annotations={"destructiveHint": false, "idempotentHint": false, "openWorldHint": false, "readOnlyHint": false}  required=None
+- get_install_options  annotations={"destructiveHint": false, "idempotentHint": false, "openWorldHint": false, "readOnlyHint": true}  required=None
+- install  annotations={"destructiveHint": true, "idempotentHint": false, "openWorldHint": false, "readOnlyHint": false}  required=['device', 'confirm']
+- list_disks  annotations={"destructiveHint": false, "idempotentHint": false, "openWorldHint": false, "readOnlyHint": true}  required=None
+- list_prerequisites  annotations={"destructiveHint": false, "idempotentHint": false, "openWorldHint": false, "readOnlyHint": true}  required=None

@@ -1,0 +1,29 @@
+•••••••••••••••
+------------------------------
+• [FAILED] [0.001 seconds]
+the configuration page under the branding switch [It] keeps v a read-only view when advanced options are on, and e the editor
+/home/mudler/_git/kairos/.worktrees/installer-wizard/installer/internal/tui/navigation_internal_test.go:159
+
+  [FAILED] Expected
+      <string>: enter: start the installation • e: view and edit the configuration
+  to contain substring
+      <string>: v: view the configuration
+  In [It] at: /home/mudler/_git/kairos/.worktrees/installer-wizard/installer/internal/tui/navigation_internal_test.go:162 @ 09/29/26 21:46:50.829
+------------------------------
+• [FAILED] [0.101 seconds]
+the configuration page under the branding switch [It] shows a saved edit on v, the text the install will run with
+/home/mudler/_git/kairos/.worktrees/installer-wizard/installer/internal/tui/navigation_internal_test.go:193
+
+  [FAILED] Expected
+      <bool>: false
+  to be true
+  In [It] at: /home/mudler/_git/kairos/.worktrees/installer-wizard/installer/internal/tui/navigation_internal_test.go:200 @ 09/29/26 21:46:50.93
+------------------------------
+•••••••••••[H[2J••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
+
+Summarizing 2 Failures:
+  [FAIL] the configuration page under the branding switch [It] keeps v a read-only view when advanced options are on, and e the editor
+  /home/mudler/_git/kairos/.worktrees/installer-wizard/installer/internal/tui/navigation_internal_test.go:162
+  [FAIL] the configuration page under the branding switch [It] shows a saved edit on v, the text the install will run with
+  /home/mudler/_git/kairos/.worktrees/installer-wizard/installer/internal/tui/navigation_internal_test.go:200
+

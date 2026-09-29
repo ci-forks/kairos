@@ -1,0 +1,6 @@
+ISO built by: IMAGE_TAG=wizard make iso at 6f4005a8a34ef4e52a84d0543201e3ea54c2039b, worktree clean: [0 modified files]
+version string in ISO name: kairos-hadron-v0.5.3-standard-amd64-generic-v4.3.0-223-g6f4005a8a-k3sv1.36.4+k3s1.iso
+2e67a0c95c638644b4c84646ea53ff8d326933ad5bbf690e8c51d462fb28de08  /home/mudler/_git/kairos/.worktrees/installer-wizard/dist/linux-amd64/kairos-installer
+2e67a0c95c638644b4c84646ea53ff8d326933ad5bbf690e8c51d462fb28de08  /system/installer/kairos-installer
+strings from this wave in the binary: loading line 1, advanced_disabled 4
+-rwxr-xr-x 1 mudler mudler 19087522 2026-09-29 22:17:06.041456215 +0000 /home/mudler/_git/kairos/.worktrees/installer-wizard/dist/linux-amd64/kairos-installer

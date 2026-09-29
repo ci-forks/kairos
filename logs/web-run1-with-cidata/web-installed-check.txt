@@ -1,0 +1,60 @@
++ cat /proc/cmdline
+BOOT_IMAGE=(loop0)/boot/vmlinuz console=ttyS0 console=tty1 net.ifnames=1 rd.cos.oemlabel=COS_OEM rd.cos.oemtimeout=10 panic=5 rd.emergency=reboot rd.shell=0 systemd.crash_reboot=yes root=LABEL=COS_ACTIVE cos-img/filename=/cOS/active.img selinux=0
++ cat /run/cos/active_mode
+1+ ls /run/cos/
+active_mode
+cos-layout.env
++ hostname
+wizard-web
++ readlink /etc/localtime
+/usr/share/zoneinfo/Europe/Rome
++ cat /etc/vconsole.conf
+KEYMAP=it
++ localectl status
+bash: line 7: localectl: command not found
++ ls -la /usr/local/wizard-edited
+-rw-r--r-- 1 root root 0 Sep 29 21:09 /usr/local/wizard-edited
++ sudo lsblk -no NAME,LABEL,SIZE /dev/vda
+vda                     40G
+├─vda1                   1M
+├─vda2 COS_OEM          64M
+├─vda3 COS_RECOVERY    1.5G
+├─vda4 COS_STATE       2.9G
+└─vda5 COS_PERSISTENT 35.6G
++ sudo lsblk -no NAME,LABEL,SIZE /dev/vdb
+vdb     2G
++ sudo blkid /dev/vdb
++ echo 'blkid vdb rc=2'
+blkid vdb rc=2
++ systemd-sysext status
+HIERARCHY EXTENSIONS SINCE
+/opt      none       -
+/usr      none       -
++ ls -la /var/lib/kairos/extensions/
+total 21540
+drwxr-xr-x 4 root root     4096 Sep 29 21:09 .
+drwxr-xr-x 3 root root     4096 Sep 29 21:09 ..
+drwxr-xr-x 2 root root     4096 Sep 29 21:09 active
+drwxr-xr-x 2 root root     4096 Sep 29 21:09 passive
+-rw-r--r-- 1 root root 22040576 Sep 29 21:09 test.sysext.raw
++ sudo find /var/lib/kairos/extensions /var/lib/extensions /run/extensions -maxdepth 2
+/var/lib/kairos/extensions
+/var/lib/kairos/extensions/passive
+/var/lib/kairos/extensions/passive/test.sysext.raw
+/var/lib/kairos/extensions/active
+/var/lib/kairos/extensions/active/test.sysext.raw
+/var/lib/kairos/extensions/test.sysext.raw
+/var/lib/extensions
+/run/extensions
+/run/extensions/test.sysext.raw
++ command -v wizard-test-ext
++ id kairos
+uid=1000(kairos) gid=1000(kairos) groups=1000(kairos),900(admin),1000(kairos)
++ sudo grep -E '^kairos:' /etc/shadow
++ cut -c1-20
+kairos:$6$EU1swSO0$f
++ sudo sh -c 'grep -h -E "device|vdb|vda" /var/log/kairos/agent*.log 2>/dev/null | tail -20'
+[90m2026-09-29T21:09:12Z[0m [32mINF[0m [1mPartitioning device...[0m
+[90m2026-09-29T21:09:19Z[0m [32mINF[0m [1mGrub install to device /dev/vda complete[0m
+2026-09-29T21:09:12Z INF Partitioning device...
+2026-09-29T21:09:19Z INF Grub install to device /dev/vda complete

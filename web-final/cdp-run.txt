@@ -1,0 +1,37 @@
+rail: STEPS | 01 | Disk | 02 | User and password | 03 | SSH keys | 04 | Hostname | 05 | Timezone and keyboard | 06 | System extensions | 07 | Provider settings | 08 | When the install finishes | 09 | Review and install
+at User and password
+at SSH keys
+at Hostname
+at Timezone and keyboard
+at System extensions
+at Provider settings
+gate exists: true | checked: false
+provider fields: Provider settings | Asked by the installed provider plugin. | Do you want to setup a full mesh-support? | Insert a network token, leave empty to autogenerate | Used only when the answer above is yes. | Do you want to enable k3s? | Back | Skip | Next
+shot 01-provider-gate-unticked
+PASS1 has p2p: false | has k3s: false
+YAML1-BEGIN
+#cloud-config
+install:
+    device: /dev/vda
+    nousers: true
+
+YAML1-END
+shot 02-review-no-p2p-no-k3s
+gate checked after click: true
+shot 03-provider-gate-ticked
+PASS2 has network_token: true | has k3s: false
+YAML2-BEGIN
+#cloud-config
+install:
+    device: /dev/vda
+    nousers: true
+p2p:
+    network_token: REDACTED-EDGEVPN-TOKEN...(527 chars)
+
+YAML2-END
+shot 04-review-gate-ticked-token
+gate checked after second click: false
+shot 05-provider-gate-unticked-again
+PASS3 has p2p: false | has k3s: false
+shot 06-review-token-gone
+CONSOLE []

@@ -1,0 +1,2 @@
+advanced_disabled: False
+provider [('p2p.network_token#ask', 'bool', 'false'), ('p2p.network_token', 'text', None), ('k3s.enabled', 'bool', None)]

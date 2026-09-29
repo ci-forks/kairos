@@ -1,0 +1,18 @@
+server: {"name": "kairos-installer", "version": "v1"} session: ONMA45TUY5TVULKNKG3J5SY3RG
+isError: None
+Installed Kairos to /dev/vda. Steps reached: partition, before-install, active, bootloader, recovery, passive, after-install, done.
+structured: {
+ "cloud_config": "#cloud-config\ninstall:\n    device: /dev/vda\n    poweroff: false\n    reboot: false\nusers:\n    - groups:\n        - admin\n      name: mcpuser\n      passwd: mcppass\n",
+ "device": "/dev/vda",
+ "steps_reached": [
+  "partition",
+  "before-install",
+  "active",
+  "bootloader",
+  "recovery",
+  "passive",
+  "after-install",
+  "done"
+ ],
+ "succeeded": true
+}

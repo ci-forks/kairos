@@ -1,0 +1,13 @@
+ISO built by: IMAGE_TAG=wizard OUTPUT_DIR=... make iso at 5a7dea40dbb01460e5cc629af3c2a5ddc688d2ca (worktree dirty only with installer/README.md and public/README.md)
+dist binary:
+d600d13957121dd033f5773e96ed59dd8a8faa34f769ac000f38e86585653ea2  /home/mudler/_git/kairos/.worktrees/installer-wizard/dist/linux-amd64/kairos-installer
+binary in OS image kairos-local/kairos-os:wizard:
+d600d13957121dd033f5773e96ed59dd8a8faa34f769ac000f38e86585653ea2  /system/installer/kairos-installer
+fill() helper (commit 5a7dea40) present in embedded wizard.js: 1
+ISO root after adding test.sysext.raw:
+'/'
+'/EFI'
+'/boot'
+'/config.yaml'
+'/rootfs.squashfs'
+'/test.sysext.raw'

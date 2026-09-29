@@ -1,0 +1,18 @@
+c7aeec5ebca5e01dea3105a5938975bff6d390c0138d4ac006f5d41d0d7a4c12  /system/installer/kairos-installer
+ls: cannot open directory '/run/initramfs/live/': Permission denied
+BOOT_IMAGE=(cd)/boot/kernel cdroot root=live:CDLABEL=COS_LIVE rd.live.dir=/ rd.live.squashimg=rootfs.squashfs net.ifnames=1 console=ttyS0 console=tty1 rd.cos.disable vga=795 nomodeset install-mode-interactive selinux=0 rd.live.overlay.overlayfs
+fd0       4K disk
+loop0 324.4M loop
+sr0   425.4M rom
+sr1     370K rom
+sr2    1024M rom
+vda      40G disk
+vdb       2G disk
+total 353726
+drwx------ 1 root   root        2048 Sep 29 21:05 .
+drwxr-xr-x 9 root   root         220 Sep 29 21:06 ..
+drwxr-xr-x 1 root   root        2048 Sep 29 21:05 EFI
+drwxr-xr-x 1 root   root        2048 Sep 29 21:05 boot
+-rw------- 1 root   root           0 Sep 29 21:05 config.yaml
+-rw-r--r-- 1 root   root   340168704 Sep 29 21:05 rootfs.squashfs
+-rw-r--r-- 1 kairos kairos  22040576 Sep 29 20:53 test.sysext.raw

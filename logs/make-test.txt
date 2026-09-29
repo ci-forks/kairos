@@ -1,0 +1,142 @@
+=== go test .github/actions/ghcr-cleanup/...
+go: downloading golang.org/x/net v0.56.0
+go: downloading golang.org/x/sys v0.46.0
+go: downloading golang.org/x/tools v0.45.0
+go: downloading golang.org/x/text v0.38.0
+go: downloading golang.org/x/sync v0.21.0
+go: downloading golang.org/x/mod v0.36.0
+ok  	github.com/kairos-io/kairos/.github/actions/ghcr-cleanup	0.029s
+go test ./...
+?   	github.com/kairos-io/kairos/v4/agent	[no test files]
+ok  	github.com/kairos-io/kairos/v4/agent/internal/agent	3.162s
+ok  	github.com/kairos-io/kairos/v4/agent/internal/agent/hooks	(cached)
+ok  	github.com/kairos-io/kairos/v4/agent/internal/bus	(cached)
+?   	github.com/kairos-io/kairos/v4/agent/internal/cmd	[no test files]
+ok  	github.com/kairos-io/kairos/v4/agent/internal/phonehome	(cached)
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/action	7.677s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/cloudinit	0.027s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/cmd	(cached)
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/config	(cached)
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/constants	0.008s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/elemental	12.274s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/extensions	0.030s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/github	8.236s
+?   	github.com/kairos-io/kairos/v4/agent/pkg/implementations	[no test files]
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/implementations/http	9.559s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/implementations/imageextractor	0.027s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/implementations/runner	0.007s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/implementations/spec	0.013s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/implementations/syscall	0.008s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/partitioner	0.032s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/progress	0.005s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/state	0.008s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/uki	2.245s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/utils	7.823s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/utils/fs	0.012s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/utils/k8s	0.005s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/utils/loop	0.026s
+ok  	github.com/kairos-io/kairos/v4/agent/pkg/utils/partitions	0.013s
+?   	github.com/kairos-io/kairos/v4/agent/tests/matchers	[no test files]
+?   	github.com/kairos-io/kairos/v4/agent/tests/mocks	[no test files]
+ok  	github.com/kairos-io/kairos/v4/cmd/kairos	0.037s
+?   	github.com/kairos-io/kairos/v4/cmd/kcrypt-challenger	[no test files]
+ok  	github.com/kairos-io/kairos/v4/editconfig/pkg/cmd	0.056s
+?   	github.com/kairos-io/kairos/v4/immucore	[no test files]
+?   	github.com/kairos-io/kairos/v4/immucore/internal/constants	[no test files]
+ok  	github.com/kairos-io/kairos/v4/immucore/internal/mount	0.008s
+ok  	github.com/kairos-io/kairos/v4/immucore/internal/utils	0.869s
+ok  	github.com/kairos-io/kairos/v4/immucore/pkg/cmd	0.269s
+ok  	github.com/kairos-io/kairos/v4/immucore/pkg/dag	0.022s
+ok  	github.com/kairos-io/kairos/v4/immucore/pkg/op	0.976s
+?   	github.com/kairos-io/kairos/v4/immucore/pkg/schema	[no test files]
+ok  	github.com/kairos-io/kairos/v4/immucore/pkg/state	3.669s
+?   	github.com/kairos-io/kairos/v4/immucore/tests/mocks	[no test files]
+ok  	github.com/kairos-io/kairos/v4/installer	0.071s
+ok  	github.com/kairos-io/kairos/v4/installer/internal/checks	(cached)
+ok  	github.com/kairos-io/kairos/v4/installer/internal/debugbundle	(cached)
+ok  	github.com/kairos-io/kairos/v4/installer/internal/disks	(cached)
+ok  	github.com/kairos-io/kairos/v4/installer/internal/mcp	(cached)
+ok  	github.com/kairos-io/kairos/v4/installer/internal/tui	(cached)
+ok  	github.com/kairos-io/kairos/v4/installer/internal/webui	4.082s
+ok  	github.com/kairos-io/kairos/v4/installer/internal/wizard	(cached)
+ok  	github.com/kairos-io/kairos/v4/installer/prereqs	(cached)
+?   	github.com/kairos-io/kairos/v4/installer/tui-check-examples/tui-check-diskwipe	[no test files]
+?   	github.com/kairos-io/kairos/v4/installer/tui-check-examples/tui-check-magicword	[no test files]
+ok  	github.com/kairos-io/kairos/v4/internal/ciguard	0.026s
+?   	github.com/kairos-io/kairos/v4/internal/version	[no test files]
+?   	github.com/kairos-io/kairos/v4/kairos-init	[no test files]
+ok  	github.com/kairos-io/kairos/v4/kairos-init/pkg/bundled	0.248s
+?   	github.com/kairos-io/kairos/v4/kairos-init/pkg/config	[no test files]
+ok  	github.com/kairos-io/kairos/v4/kairos-init/pkg/kernel	0.010s
+ok  	github.com/kairos-io/kairos/v4/kairos-init/pkg/stages	0.142s
+ok  	github.com/kairos-io/kairos/v4/kairos-init/pkg/system	0.003s
+ok  	github.com/kairos-io/kairos/v4/kairos-init/pkg/validation	0.148s
+ok  	github.com/kairos-io/kairos/v4/kairos-init/pkg/values	0.003s
+?   	github.com/kairos-io/kairos/v4/kcrypt/api/v1alpha1	[no test files]
+?   	github.com/kairos-io/kairos/v4/kcrypt/challenger	[no test files]
+?   	github.com/kairos-io/kairos/v4/kcrypt/cmd/discovery	[no test files]
+ok  	github.com/kairos-io/kairos/v4/kcrypt/controllers	0.015s
+ok  	github.com/kairos-io/kairos/v4/kcrypt/discovery	0.032s
+ok  	github.com/kairos-io/kairos/v4/kcrypt/discovery/client	0.006s
+ok  	github.com/kairos-io/kairos/v4/kcrypt/pkg/attestation	0.147s
+ok  	github.com/kairos-io/kairos/v4/kcrypt/pkg/challenger	0.473s
+?   	github.com/kairos-io/kairos/v4/kcrypt/pkg/kube	[no test files]
+?   	github.com/kairos-io/kairos/v4/kcrypt/pkg/payload	[no test files]
+?   	github.com/kairos-io/kairos/v4/provider	[no test files]
+?   	github.com/kairos-io/kairos/v4/provider/internal/assets	[no test files]
+ok  	github.com/kairos-io/kairos/v4/provider/internal/cli	0.310s
+?   	github.com/kairos-io/kairos/v4/provider/internal/cli/token	[no test files]
+ok  	github.com/kairos-io/kairos/v4/provider/internal/provider	0.029s
+?   	github.com/kairos-io/kairos/v4/provider/internal/provider/assets	[no test files]
+?   	github.com/kairos-io/kairos/v4/provider/internal/provider/config	[no test files]
+?   	github.com/kairos-io/kairos/v4/provider/internal/role	[no test files]
+ok  	github.com/kairos-io/kairos/v4/provider/internal/role/p2p	15.044s
+ok  	github.com/kairos-io/kairos/v4/provider/internal/services	0.011s
+ok  	github.com/kairos-io/kairos/v4/sdk/agentrun	0.080s
+?   	github.com/kairos-io/kairos/v4/sdk/bin/versioneer	[no test files]
+ok  	github.com/kairos-io/kairos/v4/sdk/branding	0.010s
+?   	github.com/kairos-io/kairos/v4/sdk/bundles	[no test files]
+ok  	github.com/kairos-io/kairos/v4/sdk/bus	0.015s
+?   	github.com/kairos-io/kairos/v4/sdk/clusterplugin	[no test files]
+ok  	github.com/kairos-io/kairos/v4/sdk/collector	12.575s
+?   	github.com/kairos-io/kairos/v4/sdk/constants	[no test files]
+ok  	github.com/kairos-io/kairos/v4/sdk/extensions	0.004s
+ok  	github.com/kairos-io/kairos/v4/sdk/ghw	0.019s
+?   	github.com/kairos-io/kairos/v4/sdk/ghw/mocks	[no test files]
+ok  	github.com/kairos-io/kairos/v4/sdk/installer	0.010s
+?   	github.com/kairos-io/kairos/v4/sdk/iso	[no test files]
+ok  	github.com/kairos-io/kairos/v4/sdk/kcrypt	0.009s
+?   	github.com/kairos-io/kairos/v4/sdk/kcrypt/bus	[no test files]
+ok  	github.com/kairos-io/kairos/v4/sdk/kcrypt/lookup	0.010s
+ok  	github.com/kairos-io/kairos/v4/sdk/loop	0.006s
+ok  	github.com/kairos-io/kairos/v4/sdk/machine	0.007s
+ok  	github.com/kairos-io/kairos/v4/sdk/machine/service	0.014s
+?   	github.com/kairos-io/kairos/v4/sdk/mounts	[no test files]
+?   	github.com/kairos-io/kairos/v4/sdk/profile	[no test files]
+ok  	github.com/kairos-io/kairos/v4/sdk/schema	(cached)
+ok  	github.com/kairos-io/kairos/v4/sdk/signatures	0.016s
+ok  	github.com/kairos-io/kairos/v4/sdk/state	0.009s
+ok  	github.com/kairos-io/kairos/v4/sdk/sysext	0.303s
+?   	github.com/kairos-io/kairos/v4/sdk/system	[no test files]
+?   	github.com/kairos-io/kairos/v4/sdk/types/bundles	[no test files]
+?   	github.com/kairos-io/kairos/v4/sdk/types/certs	[no test files]
+?   	github.com/kairos-io/kairos/v4/sdk/types/cloudinitrunner	[no test files]
+?   	github.com/kairos-io/kairos/v4/sdk/types/config	[no test files]
+ok  	github.com/kairos-io/kairos/v4/sdk/types/extensions	0.002s
+?   	github.com/kairos-io/kairos/v4/sdk/types/fs	[no test files]
+?   	github.com/kairos-io/kairos/v4/sdk/types/http	[no test files]
+ok  	github.com/kairos-io/kairos/v4/sdk/types/images	0.005s
+ok  	github.com/kairos-io/kairos/v4/sdk/types/install	0.006s
+?   	github.com/kairos-io/kairos/v4/sdk/types/logger	[no test files]
+?   	github.com/kairos-io/kairos/v4/sdk/types/logs	[no test files]
+ok  	github.com/kairos-io/kairos/v4/sdk/types/partitions	0.002s
+ok  	github.com/kairos-io/kairos/v4/sdk/types/platform	0.004s
+?   	github.com/kairos-io/kairos/v4/sdk/types/runner	[no test files]
+?   	github.com/kairos-io/kairos/v4/sdk/types/spec	[no test files]
+?   	github.com/kairos-io/kairos/v4/sdk/types/syscall	[no test files]
+ok  	github.com/kairos-io/kairos/v4/sdk/unstructured	0.005s
+ok  	github.com/kairos-io/kairos/v4/sdk/utils	0.002s
+?   	github.com/kairos-io/kairos/v4/sdk/utils/fs	[no test files]
+ok  	github.com/kairos-io/kairos/v4/sdk/utils/image	5.418s
+?   	github.com/kairos-io/kairos/v4/sdk/utils/strings	[no test files]
+ok  	github.com/kairos-io/kairos/v4/sdk/versioneer	0.046s

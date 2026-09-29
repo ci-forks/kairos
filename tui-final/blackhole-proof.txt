@@ -1,0 +1,8 @@
+]3008;start=4cbfd3d4-fb13-412b-b35a-276914d4d652;type=command;machineid=ac75a0f7215d48e1aa8aca5acbc9a10c;user=root;hostname=kairos-ac75;bootid=8069a721-293c-4cd9-ac0b-6009863174d7;pid=1412;cwd=/root\@@@BEGIN
+10.0.2.99 kairos-io.github.io
+-P OUTPUT ACCEPT
+-A OUTPUT -d 10.255.255.1/32 -j DROP
+-A OUTPUT -d 10.0.2.99/32 -j DROP
+10.0.2.0/24 dev ens3 scope link  src 10.0.2.15  metric 1024 
+curl rc=28 after 10s (28 means timed out: the catalog host is blackholed)
+@@@END

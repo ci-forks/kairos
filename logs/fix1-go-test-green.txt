@@ -1,0 +1,9 @@
+ok  	github.com/kairos-io/kairos/v4/installer	0.045s
+ok  	github.com/kairos-io/kairos/v4/installer/internal/checks	(cached)
+ok  	github.com/kairos-io/kairos/v4/installer/internal/debugbundle	(cached)
+ok  	github.com/kairos-io/kairos/v4/installer/internal/disks	(cached)
+ok  	github.com/kairos-io/kairos/v4/installer/internal/mcp	(cached)
+ok  	github.com/kairos-io/kairos/v4/installer/internal/tui	0.766s
+ok  	github.com/kairos-io/kairos/v4/installer/internal/webui	(cached)
+ok  	github.com/kairos-io/kairos/v4/installer/internal/wizard	(cached)
+ok  	github.com/kairos-io/kairos/v4/installer/prereqs	(cached)

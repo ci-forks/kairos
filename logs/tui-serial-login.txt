@@ -1,0 +1,11 @@
+
+]3008;start=aa88390dde5c4240a506740f67cf5ec7;user=root;hostname=wizard-tui;machineid=928a4aec11d844079154852071828a60;bootid=a93fbbec608a4e199dda07f60e36353b;pid=1331;pidfdid=4696;comm=login;targetuser=kairos;sessionid=3;type=session\Welcome to Kairos!
+
+Refer to https://kairos.io for documentation.
+]3008;start=e91008c69f2d48a9aa9c8d90d8ae7804;user=root;hostname=wizard-tui;machineid=928a4aec11d844079154852071828a60;bootid=a93fbbec608a4e199dda07f60e36353b;pid=1331;pidfdid=4696;comm=login;targetuser=kairos;sessionid=3;type=session\]3008;start=c31b2773-aabc-4f66-8641-87c45992f83a;type=shell;machineid=928a4aec11d844079154852071828a60;user=kairos;hostname=wizard-tui;bootid=a93fbbec-608a-4e19-9dda-07f60e36353b;pid=1531;cwd=/home/kairos\[kairos@wizard-tui ~]$ <at /proc/sys/kernel/random/boot_id; echo @@@EXIT=$?
+]3008;start=b6313b3f-849e-4f88-9309-17e06ed8d350;type=command;machineid=928a4aec11d844079154852071828a60;user=kairos;hostname=wizard-tui;bootid=a93fbbec-608a-4e19-9dda-07f60e36353b;pid=1531;cwd=/home/kairos\@@@BEGIN
+uid=1000(kairos) gid=1000(kairos) groups=1000(kairos),900(admin)
+wizard-tui
+a93fbbec-608a-4e19-9dda-07f60e36353b
+@@@EXIT=0
+]3008;end=b6313b3f-849e-4f88-9309-17e06ed8d350;exit=success\]3008;start=c31b2773-aabc-4f66-8641-87c45992f83a;type=shell;machineid=928a4aec11d844079154852071828a60;user=kairos;hostname=wizard-tui;bootid=a93fbbec-608a-4e19-9dda-07f60e36353b;pid=1531;cwd=/home/kairos\[kairos@wizard-tui ~]$ 
