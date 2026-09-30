@@ -1,0 +1,24 @@
+┌────────────────────────────────────────────────────────────────────────────┐
+│                                                                            │
+│                        Kairos Interactive Installer                        │
+│                                                                            │
+│ How do you want to install?                                                │
+│                                                                            │
+│ > Quick install                                                            │
+│     Pick a disk and install. No user is created and nothing else is        │
+│ configured.                                                                │
+│                                                                            │
+│   Customize                                                                │
+│     Set up a user, SSH keys, hostname, timezone, extensions and more.      │
+│                                                                            │
+│                                                                            │
+│                                                                            │
+│ ↑/k: up • ↓/j: down • enter: select • ESC: back • q/ctrl+c: quit           │
+│                                                                            │
+│                                                                            │
+│                                                                            │
+│                                                                            │
+│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
+
+

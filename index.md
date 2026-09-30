@@ -125,3 +125,17 @@ in the clean run above.
 | 05-provider-gate-unticked-again.png | gate unticked again |
 | 06-review-token-gone.png | Review: the token is gone |
 | cdp-run.txt | CDP driver output with the YAML of each pass |
+
+## Follow-up: quick install and the AuroraBoot look
+
+### tui-quick/ (terminal installer at 80x24 in tmux, stand-in agent, commit c4ad3b91)
+| File | Shows |
+| --- | --- |
+| 01-first.txt | welcome with the web installer URL |
+| 02-after-welcome.txt | "How do you want to install?": Quick install (default) or Customize |
+| 03-disk.txt | disk step |
+| 04-summary.txt | quick summary: erase warning, finish nothing, "No user was set up" note |
+| 05-type-y.txt | enter asks for y before erasing |
+
+### web-auroraboot/ (web wizard with AuroraBoot's tokens and components)
+Every step, review, progress and failure page in light and dark at 1280x900 and at 400px, plus the phone-width step drawer, the no-JS dark fallback, and AuroraBoot's own artifact builder screenshot for comparison.

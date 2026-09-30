@@ -1,0 +1,24 @@
+┌────────────────────────────────────────────────────────────────────────────┐
+│                                                                            │
+│                        Kairos Interactive Installer                        │
+│                                                                            │
+│ Installation Summary                                                       │
+│                                                                            │
+│ Selected Disk: /dev/dm-0                                                   │
+│ Everything on /dev/dm-0 will be erased.                                    │
+│ Action to take when installation is complete: nothing                      │
+│                                                                            │
+│ Quick install: nothing but the disk is configured.                         │
+│ No user was set up, so you cannot log in with a password.                  │
+│ To add a user, press esc twice and choose Customize.                       │
+│                                                                            │
+│                                                                            │
+│ enter: install • v: view the configuration • e: edit the configuration     │
+│                                                                            │
+│                                                                            │
+│                                                                            │
+│                                                                            │
+│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
+
+

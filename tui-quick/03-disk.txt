@@ -1,0 +1,24 @@
+┌────────────────────────────────────────────────────────────────────────────┐
+│                                                                            │
+│                        Kairos Interactive Installer                        │
+│                                                                            │
+│ Disk                                                                       │
+│ Pick the disk to install to. Everything on it is erased.                   │
+│ WARNING: All data on the selected disk will be DESTROYED!                  │
+│                                                                            │
+│ > /dev/dm-0 (100.00 GiB)                                                   │
+│   /dev/sda (320.00 GiB, QEMU_HARDDISK)                                     │
+│                                                                            │
+│                                                                            │
+│ ↑/↓: move • tab: next field • enter: save • esc: back • ctrl+d: collect    │
+│ debug logs • ctrl+c: quit                                                  │
+│                                                                            │
+│                                                                            │
+│                                                                            │
+│                                                                            │
+│                                                                            │
+│                                                                            │
+│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
+
+
