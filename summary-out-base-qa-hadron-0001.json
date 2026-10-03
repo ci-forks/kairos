@@ -1,0 +1,19 @@
+{
+  "tag": "base",
+  "id": "qa-hadron-0001",
+  "hasMonitoring": false,
+  "hasSiteConfig": false,
+  "extHasVendor": false,
+  "extHasConfext": false,
+  "extHasMonitoring": true,
+  "extHasSiteConfig": true,
+  "reqs": [
+    "GET /api/v1/groups",
+    "GET /api/v1/secureboot-keys",
+    "GET /api/v1/settings/registration-token",
+    "GET /api/v1/settings/extension-catalogs",
+    "GET /api/v1/artifacts/qa-hadron-0001",
+    "GET /api/v1/system/builder",
+    "GET /api/v1/extensions"
+  ]
+}

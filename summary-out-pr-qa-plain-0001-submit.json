@@ -1,0 +1,38 @@
+{
+  "tag": "pr",
+  "id": "qa-plain-0001",
+  "hasMonitoring": true,
+  "hasSiteConfig": true,
+  "extHasVendor": true,
+  "extHasConfext": true,
+  "extHasMonitoring": true,
+  "extHasSiteConfig": true,
+  "posted": {
+    "keys": [
+      "name",
+      "baseImage",
+      "kairosVersion",
+      "model",
+      "arch",
+      "variant",
+      "allow-insecure-registries",
+      "outputs",
+      "signing",
+      "provisioning",
+      "cloudConfig"
+    ],
+    "extensionHierarchies": null,
+    "bundledExtensions": null
+  },
+  "reqs": [
+    "GET /api/v1/groups",
+    "GET /api/v1/secureboot-keys",
+    "GET /api/v1/settings/registration-token",
+    "GET /api/v1/settings/extension-catalogs",
+    "GET /api/v1/artifacts/qa-plain-0001",
+    "GET /api/v1/system/builder",
+    "GET /api/v1/artifacts/qa-plain-0001/bundle-extensions",
+    "GET /api/v1/extensions",
+    "POST /api/v1/artifacts"
+  ]
+}
