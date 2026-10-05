@@ -1,0 +1,16 @@
+#cloud-config
+users:
+  - name: kairos
+    passwd: kairos
+    groups: [admin]
+stages:
+  initramfs:
+    - name: qa bind agent under kairos-installer
+      files:
+        - path: /etc/systemd/system/kairos-installer.service.d/qa.conf
+          permissions: 0644
+          content: |
+            [Service]
+            ExecStartPre=/bin/sh -c 'mkdir -p /run/qabin; mount -o ro /dev/disk/by-label/QABIN /run/qabin; t=$$(readlink -f /usr/bin/kairos-agent); mount --bind /run/qabin/kairos "$$t"; sha256sum "$$t" > /run/qabin.sha'
+install:
+  ssh_hardening: true
